@@ -1,10 +1,15 @@
 <!-- Font Awesome -->
+<link rel="stylesheet" href="{{asset('plugins/font-awesome/css/all.css')}}">
+<link rel="stylesheet" href="{{asset('plugins/font-awesome/js/all.js')}}">
 <link rel="stylesheet" href="{{asset('plugins/font-awesome/css/font-awesome.min.css')}}">
+<link rel="stylesheet" href="{{asset('plugins/font-awesome/css/fontawesome.min.css')}}">
+
 <!-- Ionicons -->
-<link rel="stylesheet" href="{{asset('plugins/ionicons/css/ionicons.min.css')}}">
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <!-- Theme style -->
 <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
 <!-- iCheck -->
+<link rel="stylesheet" href="{{asset('plugins/iCheck/square/blue.css')}}">
 <link rel="stylesheet" href="{{asset('plugins/iCheck/flat/blue.css')}}">
 <!-- Morris chart -->
 <link rel="stylesheet" href="{{asset('plugins/morris/morris.css')}}">
@@ -22,4 +27,6 @@
 <link rel="stylesheet" href="{{asset('dist/css/bootstrap-rtl.min.css')}}">
 <!-- template rtl version -->
 <link rel="stylesheet" href="{{asset('dist/css/custom-style.css')}}">
+
+
 

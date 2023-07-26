@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Arr;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +13,22 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
+
+Route::view('/login','authorize.login')->name('login');
+
+Route::view('/register', 'authorize.register')->name('register');
+
+Route::post('/workplace', function () {
+    return view('workplace');
+})->name('workplace');
+Route::get('/workplace', function (){
+    return view('workplace');
+});
+
+
+Route::post('/register',function (){
+    return view('workplace');
+})->name('register');
