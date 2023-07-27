@@ -28,6 +28,11 @@ Route::get('/workplace', function (){
     return view('workplace');
 });
 
+Route::view('/add_Product','products.addProduct')->name('addProduct');
+Route::view('/add_User','users.addUser')->name('addUser');
+Route::view('/add_Order','orders.addOrder')->name('addOrder');
+Route::view('/add_Opportunity','opportunitys.addOpportunity')->name('addOpportunity');
+Route::view('/add_Check','checks.addCheck')->name('addCheck');
 
 Route::post('/register',function (){
     return view('workplace');

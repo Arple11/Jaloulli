@@ -1,3 +1,4 @@
+@include('.Sidebar.brand')
 <div class="sidebar" style="direction: ltr">
     <div style="direction: rtl">
         <!-- Sidebar user panel (optional) -->
@@ -130,7 +131,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
 
-                            <a href="#" class="nav-link">
+                            <a href="{{route('addUser')}}" class="nav-link">
                                 <i class="nav-icon fa-solid fa-arrow-left"></i>
                                 <p> کاربر جدید</p>
                             </a>
@@ -155,7 +156,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
 
-                            <a href="#" class="nav-link">
+                            <a href="{{route('addCheck')}}" class="nav-link">
                                 <i class="nav-icon fa-solid fa-arrow-left"></i>
                                 <p> فاکتور جدید</p>
                             </a>
@@ -180,7 +181,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('addProduct')}}" class="nav-link">
                                 <i class="nav-icon fa-solid fa-arrow-left"></i>
                                 <p> محصول جدید</p>
                             </a>
@@ -203,7 +204,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('addOrder')}}" class="nav-link">
                                 <i class="nav-icon fa-solid fa-arrow-left"></i>
                                 <p> سفارش جدید</p>
                             </a>
@@ -226,7 +227,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('addOpportunity')}}" class="nav-link">
                                 <i class="nav-icon fa-solid fa-arrow-left"></i>
                                 <p>ثبت فرصت جدید</p>
                             </a>

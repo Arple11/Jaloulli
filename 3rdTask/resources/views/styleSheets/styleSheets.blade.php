@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="{{asset('persenalCss/checkbox_radio/style.css')}}">
 <!-- Font Awesome -->
 <link rel="stylesheet" href="{{asset('plugins/font-awesome/css/all.css')}}">
 <link rel="stylesheet" href="{{asset('plugins/font-awesome/js/all.js')}}">
