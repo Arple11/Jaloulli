@@ -42,9 +42,9 @@
                                    placeholder="شماره فاکتور را وارد کنید">
                         </div>
                         <div class="form-group">
-                            <label for="customerName">نام و نام خانوادگی مشتری</label>
+                            <label for="customerName">نام خانوادگی مشتری</label>
                             <input type="text" class="form-control" id="customerName" name="customerName"
-                                   placeholder="نام و نام خانوادگی مشتری">
+                                   placeholder="نام خانوادگی مشتری">
                         </div>
                         <div class="form-group">
                             <label for="customerPhoneNum">شماره تلفن مشتری</label>

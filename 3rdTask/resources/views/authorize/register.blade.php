@@ -35,13 +35,17 @@
                 <div class="input-group mb-3">
                     <input type="password" class="form-control" placeholder="رمز عبور">
                     <div class="input-group-append">
-                        <span class="fa fa-lock input-group-text"></span>
+                        <span class="input-group-text">
+                            <i class="fa-solid fa-fingerprint"></i>
+                        </span>
                     </div>
                 </div>
                 <div class="input-group mb-3">
                     <input type="password" class="form-control" placeholder="تکرار رمز عبور">
                     <div class="input-group-append">
-                        <span class="fa fa-lock input-group-text"></span>
+                        <span class="input-group-text">
+                            <i class="fa-solid fa-lock"></i>
+                        </span>
                     </div>
                 </div>
                 <div class="row">
@@ -63,11 +67,11 @@
             <div class="social-auth-links text-center">
                 <p>- یا -</p>
                 <a href="#" class="btn btn-block btn-primary">
-                    <i class="fa fa-facebook mr-2"></i>
-                    ثبت نام با اکانت فیس بود
+                    <i class="fa-brands fa-facebook fa-lg"></i>
+                    ثبت نام با اکانت فیسوبک
                 </a>
                 <a href="#" class="btn btn-block btn-danger">
-                    <i class="fa fa-google-plus mr-2"></i>
+                    <i class="fa-brands fa-google"></i>
                     ثبت نام با گوگل
                 </a>
             </div>
