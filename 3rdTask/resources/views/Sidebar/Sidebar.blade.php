@@ -138,7 +138,7 @@
                         </li>
                         <li class="nav-item">
 
-                            <a href="#" class="nav-link">
+                            <a href="{{route('Users_data')}}" class="nav-link">
                                 <i class="nav-icon fa-solid fa-arrow-left"></i>
                                 <p>لیست کاربران </p>
                             </a>
@@ -163,7 +163,7 @@
                         </li>
                         <li class="nav-item">
 
-                            <a href="#" class="nav-link">
+                            <a href="{{route('Checks_data')}}" class="nav-link">
                                 <i class="nav-icon fa-solid fa-arrow-left"></i>
                                 <p>لیست فاکتورها </p>
                             </a>
@@ -187,7 +187,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('Products_data')}}" class="nav-link">
                                 <i class="nav-icon fa-solid fa-arrow-left"></i>
                                 <p>لیست محصولات </p>
                             </a>
@@ -210,7 +210,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('Orders_data')}}" class="nav-link">
                                 <i class="nav-icon fa-solid fa-arrow-left"></i>
                                 <p>لیست سفارشات </p>
                             </a>
@@ -233,7 +233,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('Opportunitys_data')}}" class="nav-link">
                                 <i class="nav-icon fa-solid fa-arrow-left"></i>
                                 <p> لیست فرصتها </p>
                             </a>
