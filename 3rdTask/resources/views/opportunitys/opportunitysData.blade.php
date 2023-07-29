@@ -78,7 +78,7 @@
                                             </td>
                                         @endforeach
                                         <td>
-                                            <form class="" action="#" method="POST">
+                                            <form {{--class="" action="#" method="POST">--}}
                                                 @csrf
                                                 @method('PUT')
                                                 @foreach ($user as $key => $value)
@@ -88,7 +88,7 @@
                                                     <i class="fa-regular fa-pen-to-square fa-flip-horizontal"></i>
                                                 </button>
                                             </form>
-                                            <form class="" action="#" method="POST">
+                                            <form {{--class="" action="#" method="POST">--}}
                                                 @csrf
                                                 @method('PUT')
                                                 @foreach ($user as $key => $value)

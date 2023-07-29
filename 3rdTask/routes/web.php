@@ -43,7 +43,6 @@ Route::view('/Orders','orders.ordersData')->name('Orders_data');
 Route::view('/Opportunitys','opportunitys.opportunitysData')->name('Opportunitys_data');
 Route::view('/Checks','checks.checksData')->name('Checks_data');
 
-Route::post('/Users')->name('editUserData');
 
 
 Route::post('/register',function (){
