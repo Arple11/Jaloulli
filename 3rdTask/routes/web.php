@@ -44,6 +44,10 @@ Route::view('/Opportunitys','opportunitys.opportunitysData')->name('Opportunitys
 Route::view('/Checks','checks.checksData')->name('Checks_data');
 
 
+#profile edit routs
+Route::view('editeProfile','prof.editProfile')->name('editProfile');
+Route::view('editeProfImage','prof.editProfImage')->name('editProfImage');
+Route::view('editeProfPass','prof.editProfPass')->name('editProfPass');
 
 Route::post('/register',function (){
     return view('workplace');
