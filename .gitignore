@@ -22,5 +22,4 @@ forFuture/
 3rdTask/package-lock.json
 
 3rdTask/.editorconfig
-/New folder/
-/forFuture/
+/package-lock.json
