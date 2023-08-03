@@ -9,17 +9,6 @@
 
     @include('.styleSheets.dataStyle')
     @include('.styleSheets.styleSheets')
-    <?php
-    $users = [
-        '123' => [
-            'username' => 'arcan',
-            'email' => 'alighaforian@yahoo.com',
-            'first_name' => 'ali',
-            'last_name' => 'Ghaforian',
-            'phone_number' => '09382580898'
-
-        ]
-    ] ?>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -52,43 +41,38 @@
                             <table id="Data" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
-                                    @foreach($users as $user)
-                                        @foreach($user as $key => $value)
-                                            <th>{{$key}}</th>
-                                        @endforeach
-                                        @break
-                                    @endforeach
-                                    {{--<th>نام کاربری</th>
+                                    <th>نام کاربری</th>
                                     <th>ایمیل</th>
                                     <th>نام</th>
                                     <th>نام خانوادگی</th>
-                                    <th>شماره همراه</th>--}}
+                                    <th>شماره همراه</th>
                                     <th>ویرایش</th>
+                                    <th>حذف</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach ($users as $user)
                                     <tr>
-                                        @foreach($user as $key => $value)
-                                            <td>{{ $value }}</td>
-                                        @endforeach
+                                        <td>{{ $user->user_name }}</td>
+                                        <td>{{ $user->email}}</td>
+                                        <td>{{ $user->first_name }}</td>
+                                        <td>{{ $user->last_name }}</td>
+                                        <td>{{ $user->phone_number }}</td>
                                         <td>
                                             <form {{--class="" action="#" method="POST"--}}>
                                                 @csrf
-                                                @method('PUT')
-                                                @foreach ($user as $key => $value)
-                                                    <input type="hidden" name="{{ $key }}" value="{{ $value }}">
-                                                @endforeach
+                                                {{--@method('PUT')--}}
+                                                <input type="hidden" name="id" value="{{ $user->id }}">
                                                 <button type="submit">
                                                     <i class="fa-regular fa-pen-to-square fa-flip-horizontal"></i>
                                                 </button>
                                             </form>
+                                        </td>
+                                        <td>
                                             <form {{--class="" action="#" method="POST"--}}>
                                                 @csrf
-                                                @method('PUT')
-                                                @foreach ($user as $key => $value)
-                                                    <input type="hidden" name="{{ $key }}" value="{{ $value }}">
-                                                @endforeach
+                                                {{--@method('DELETE')--}}
+                                                <input type="hidden" name="id" value="{{ $user->id }}">
                                                 <button type="submit">
                                                     <i class="fa-regular fa-trash-can"></i>
                                                 </button>
@@ -97,16 +81,15 @@
                                     </tr>
                                 @endforeach
                                 </tbody>
-
                                 <tfoot>
                                 <tr>
-                                    @foreach($users as $user)
-                                        @foreach($user as $key => $value)
-                                            <th>{{$key}}</th>
-                                        @endforeach
-                                        @break
-                                    @endforeach
+                                    <th>نام کاربری</th>
+                                    <th>ایمیل</th>
+                                    <th>نام</th>
+                                    <th>نام خانوادگی</th>
+                                    <th>شماره همراه</th>
                                     <th>ویرایش</th>
+                                    <th>حذف</th>
                                 </tr>
                                 </tfoot>
                             </table>

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Arr;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,9 +37,13 @@ Route::view('/add_Order','orders.addOrder')->name('addOrder');
 Route::view('/add_Opportunity','opportunitys.addOpportunity')->name('addOpportunity');
 Route::view('/add_Check','checks.addCheck')->name('addCheck');
 
+Route::post('/users/new_user',[UsersController::class,'store'])->name('store_user');
+
+
 # GET route for Data options views
 Route::view('/Products','products.productsData')->name('Products_data');
-Route::view('/Users','users.usersData')->name('Users_data');
+/*Route::view('/Users','users.usersData')->name('Users_data');*/
+Route::get('/users/data',[UsersController::class,'get_all_data'])->name('Users_data');
 Route::view('/Orders','orders.ordersData')->name('Orders_data');
 Route::view('/Opportunitys','opportunitys.opportunitysData')->name('Opportunitys_data');
 Route::view('/Checks','checks.checksData')->name('Checks_data');

@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('customers', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('email',50)->unique();
             $table->string('first_name',30);
             $table->string('last_name',30);
             $table->string('user_name',30)->unique();
-            $table->integer('phone_number');
+            $table->string('phone_number',11);
+            $table->integer('role')->default(1);
             $table->integer('age');
             $table->string('gender');
             $table->string('education');
@@ -28,7 +29,6 @@ return new class extends Migration
             $table->integer('postal_code');
             $table->string('address');
             $table->string('password');
-            $table->bigInteger('total_bought')->unsigned()->default(0);
             $table->timestamps();
         });
     }
