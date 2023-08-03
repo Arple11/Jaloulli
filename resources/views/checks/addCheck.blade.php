@@ -33,7 +33,7 @@
         <section class="content">
             <!-- form start -->
             <div class="container-fluid">
-                <form role="form" method="post">
+                <form role="form" method="post" action="{{route('submitCheck')}}">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
