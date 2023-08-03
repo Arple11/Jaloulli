@@ -37,32 +37,39 @@
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="email">آدرس ایمیل</label>
-                            <input type="email" class="form-control" id="email" name="email"
-                                   placeholder="ایمیل را وارد کنید">
+                            <label for="id">کد مشتری</label>
+                            <input type="number" class="form-control" id="id" name="customer_id"
+                                   placeholder="کد مشتری را وارد کنید">
                         </div>
                         <div class="form-group">
-                            <label for="phoneNum">شماره تلفن</label>
-                            <input type="text" class="form-control" id="phoneNum" name="phoneNum"
-                                   placeholder="شماره تلفن">
+                            <label for="product_id">کد محصول</label>
+                            <input type="number" class="form-control" id="product_id" name="product_id"
+                                   placeholder="کد محصول را وارد کنید">
                         </div>
+                        <div class="form-group">
+                            <label for="price">قیمت</label>
+                            <input type="number" class="form-control" id="price" name="price"
+                                   placeholder="قیمت را وارد کنید">
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity">تعداد</label>
+                            <input type="number" class="form-control" id="quantity" name="quantity"
+                                   placeholder="تعداد محصول را وارد کنید">
+                        </div>
+
                         <div class="form-group">
                             <label for="explanation">توضیحات</label>
                             <textarea class="form-control" rows="4" id="explanation" name="explanation"
                                       placeholder="لطفا توضیحات مربوطه را وارد کنید"></textarea>
                         </div>
+
                         <div class="form-group">
-                            <label for="exampleInputFile">ارسال فایل</label>
-                            <div class="input-group">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="exampleInputFile">
-                                    <label class="custom-file-label" for="exampleInputFile">انتخاب
-                                        فایل</label>
-                                </div>
-                                <div class="input-group-append">
-                                    <span class="input-group-text" id="">Upload</span>
-                                </div>
-                            </div>
+                            <label for="status">وضعیت</label>
+                            <select class="form-control" id="status" name="status">
+                            <option value="follow_up">در حال پیگیری</option>
+                            <option value="ongoing">در حال اجرا</option>
+                            <option value="finished">پایان یافته</option>
+                            </select>
                         </div>
 
                         <div class="form-check">

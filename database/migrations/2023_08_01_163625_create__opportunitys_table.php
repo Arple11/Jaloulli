@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('opportunities', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('seller_id')->unsigned()->nullable(FALSE);
+            $table->bigInteger('user_id')->unsigned()->nullable(FALSE);
             $table->longText('opportunity_explanation');
             $table->boolean('is_urgent')->default(FALSE);
             $table->timestamps();
