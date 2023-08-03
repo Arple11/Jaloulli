@@ -17,7 +17,7 @@
             'username' => 'arcan',
             'explanation' => 'ali',
             'file' => null,
-            'urgent' => true,
+            'urgent' => TRUE,
         ]
     ] ?>
 </head>
@@ -64,6 +64,7 @@
                                     <th>نام خانوادگی</th>
                                     <th>شماره همراه</th>--}}
                                     <th>ویرایش</th>
+                                    <th>حذف</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -71,29 +72,30 @@
                                     <tr>
                                         @foreach($user as $key => $value)
                                             <td>
-                                                @if($value === TRUE) {{'true'}}
-                                                @elseif($value === FALSE) {{ 'false'}}
-                                                @else {{$value}}
+                                                @if($value === TRUE)
+                                                    {{'true'}}
+                                                @elseif($value === FALSE)
+                                                    {{ 'false'}}
+                                                @else
+                                                    {{$value}}
                                                 @endif
                                             </td>
                                         @endforeach
                                         <td>
-                                            <form {{--class="" action="#" method="POST">--}}
+                                            <form {{--class="" action="#" method="POST"--}}>
                                                 @csrf
-                                                @method('PUT')
-                                                @foreach ($user as $key => $value)
-                                                    <input type="hidden" name="{{ $key }}" value="{{ $value }}">
-                                                @endforeach
+                                                {{--@method('PUT')--}}
+                                                <input type="hidden" name="id" value="{{--{{ $user->id }}--}}">
                                                 <button type="submit">
                                                     <i class="fa-regular fa-pen-to-square fa-flip-horizontal"></i>
                                                 </button>
                                             </form>
-                                            <form {{--class="" action="#" method="POST">--}}
+                                        </td>
+                                        <td>
+                                            <form {{--class="" action="#" method="POST"--}}>
                                                 @csrf
-                                                @method('PUT')
-                                                @foreach ($user as $key => $value)
-                                                    <input type="hidden" name="{{ $key }}" value="{{ $value }}">
-                                                @endforeach
+                                                {{--@method('DELETE')--}}
+                                                <input type="hidden" name="id" value="{{--{{ $user->id }}--}}">
                                                 <button type="submit">
                                                     <i class="fa-regular fa-trash-can"></i>
                                                 </button>
@@ -112,6 +114,7 @@
                                         @break
                                     @endforeach
                                     <th>ویرایش</th>
+                                    <th>حذف</th>
                                 </tr>
                                 </tfoot>
                             </table>
