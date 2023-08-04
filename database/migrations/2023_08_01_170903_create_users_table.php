@@ -17,18 +17,19 @@ return new class extends Migration
             $table->string('first_name',30);
             $table->string('last_name',30);
             $table->string('user_name',30)->unique();
-            $table->string('phone_number',11);
-            $table->integer('role')->default(1);
-            $table->integer('age');
-            $table->string('gender');
-            $table->string('education');
+            $table->string('phone_number',10);
+            $table->tinyInteger('role')->default(1)->unsigned();
+            $table->smallInteger('age')->unsigned();
+            $table->string('gender',10);
+            $table->string('education',15);
             $table->string('occupation');
             $table->text('interests')->nullable();
             $table->text('hobbies')->nullable();
             $table->text('bio')->nullable();
-            $table->integer('postal_code');
+            $table->bigInteger('postal_code');
             $table->string('address');
             $table->string('password');
+            $table->boolean('enable')->default(1);
             $table->timestamps();
         });
     }
