@@ -33,18 +33,28 @@
         <section class="content">
             <!-- form start -->
             <div class="container-fluid">
-                <form role="form" method="post">
+                <form role="form" method="post" action="{{route('store_product')}}" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
                             <label for="productName">نام محصول</label>
-                            <input type="email" class="form-control" id="productName" name="productName"
+                            <input type="text" class="form-control" id="productName" name="productName"
                                    placeholder="نام">
                         </div>
                         <div class="form-group">
-                            <label for="productId">ID محصول</label>
-                            <input type="password" class="form-control" id="productId" name="productId"
-                                   placeholder="ID محصول">
+                            <label for="price">قیمت</label>
+                            <input type="number" class="form-control" id="price" name="price"
+                                   placeholder="قیمت">
+                        </div>
+                        <div class="form-group">
+                            <label for="amount_available">موجودی</label>
+                            <input type="number" class="form-control" id="amount_available" name="amount_available"
+                                   placeholder="موجودی">
+                        </div>
+                        <div class="form-group">
+                            <label for="amount_sold">فروش رقته</label>
+                            <input type="number" class="form-control" id="amount_sold" name="amount_sold"
+                                   placeholder="فروش رقته">
                         </div>
                         <div class="form-group">
                             <label for="explanation">توضیحات</label>
@@ -55,7 +65,7 @@
                             <label for="productImages">ارسال تصاویر</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="productImages" name="productImages"
+                                    <input type="file" class="custom-file-input" id="productImages" name="productImages[]"
                                            multiple accept="image/*">
                                     <label class="custom-file-label" for="exampleInputFile">انتخاب
                                         عکس</label>

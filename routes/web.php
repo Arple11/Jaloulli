@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Arr;
 use App\Http\Controllers\checkController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,9 +45,9 @@ Route::prefix('Users')->group(function ()
 
 Route::prefix('Product')->group(function ()
 {
-    Route::view('/Products','products.productsData')->name('Products_data');
+    Route::get('/all_products',[ProductController::class,'all_products'])->name('Products_data');
     Route::view('/add_Product','products.addProduct')->name('addProduct');
-    Route::view('/Products','products.productsData')->name('Products_data');
+    Route::post('/store_product',[ProductController::class,'store'])->name('store_product');
 });
 
 Route::prefix('Opportunity')->group(function ()
