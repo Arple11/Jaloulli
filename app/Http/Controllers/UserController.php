@@ -8,7 +8,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 
-class UsersController extends Controller
+class UserController extends Controller
 {
     public function store(Request $request): RedirectResponse
     {
