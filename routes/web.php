@@ -35,6 +35,11 @@ Route::prefix('Users')->group(function ()
     Route::view('/add_User','users.addUser')->name('addUser');
     Route::post('/store_user',[UsersController::class,'store'])->name('store_user');
     Route::get('/all_data',[UsersController::class,'get_all_users'])->name('Users_data');
+    Route::post('/edit_user/{id}',[UsersController::class,'store_edited_user'])->name('store_edited_user');
+    Route::get('/edit_user/{id}',[UsersController::class,'edit_panel_user_data'])->name('edit_panel');
+    Route::post('/delete_user/{id}',[UsersController::class,'delete_user'])->name('delete_user');
+
+
 });
 
 Route::prefix('Product')->group(function ()

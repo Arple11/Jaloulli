@@ -59,21 +59,18 @@
                                         <td>{{ $user->last_name }}</td>
                                         <td>{{ $user->phone_number }}</td>
                                         <td>
-                                            <form {{--class="" action="#" method="POST"--}}>
-                                                @csrf
-                                                {{--@method('PUT')--}}
-                                                <input type="hidden" name="id" value="{{ $user->id }}">
+                                            <form class="" action="{{route('edit_panel',['id'=>$user->id])}}"
+                                                  method="get">
                                                 <button type="submit">
                                                     <i class="fa-regular fa-pen-to-square fa-flip-horizontal"></i>
                                                 </button>
                                             </form>
                                         </td>
                                         <td>
-                                            <form {{--class="" action="#" method="POST"--}}>
+                                            <form class="" action="{{route('delete_user',['id'=>$user->id])}}"
+                                                  method="post">
                                                 @csrf
-                                                {{--@method('DELETE')--}}
-                                                <input type="hidden" name="id" value="{{ $user->id }}">
-                                                <button type="submit">
+                                                <button type="submit" onclick="return confirm('Are you sure?')">
                                                     <i class="fa-regular fa-trash-can"></i>
                                                 </button>
                                             </form>
