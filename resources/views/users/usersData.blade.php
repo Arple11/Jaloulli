@@ -59,7 +59,7 @@
                                         <td>{{ $user->last_name }}</td>
                                         <td>{{ $user->phone_number }}</td>
                                         <td>
-                                            <form class="" action="{{route('edit_panel',['id'=>$user->id])}}"
+                                            <form class="" action="{{route('edit_user',['id'=>$user->id])}}"
                                                   method="get">
                                                 <button type="submit">
                                                     <i class="fa-regular fa-pen-to-square fa-flip-horizontal"></i>

@@ -37,7 +37,7 @@ Route::prefix('Users')->group(function ()
     Route::post('/store_user',[UserController::class,'store'])->name('store_user');
     Route::get('/all_data',[UserController::class,'get_all_users'])->name('Users_data');
     Route::post('/edit_user/{id}',[UserController::class,'store_edited_user'])->name('store_edited_user');
-    Route::get('/edit_user/{id}',[UserController::class,'edit_panel_user_data'])->name('edit_panel');
+    Route::get('/edit_user/{id}',[UserController::class,'edit_panel_user_data'])->name('edit_user');
     Route::post('/delete_user/{id}',[UserController::class,'delete_user'])->name('delete_user');
 
 
@@ -48,6 +48,10 @@ Route::prefix('Product')->group(function ()
     Route::get('/all_products',[ProductController::class,'all_products'])->name('Products_data');
     Route::view('/add_Product','products.addProduct')->name('addProduct');
     Route::post('/store_product',[ProductController::class,'store'])->name('store_product');
+    Route::post('/delete_product/{id}',[ProductController::class,'delete_product'])->name('delete_product');
+    Route::get('/edit_product/{id}',[ProductController::class,'edit_product_menu'])->name('edit_product');
+    Route::post('/edit_product/{id}',[ProductController::class,'store_edited_product'])
+        ->name('store_edit_product');
 });
 
 Route::prefix('Opportunity')->group(function ()

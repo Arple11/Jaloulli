@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+@php use Illuminate\Support\Facades\Storage; @endphp
+        <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -9,15 +10,12 @@
 
     @include('.styleSheets.dataStyle')
     @include('.styleSheets.styleSheets')
-    <?php
-    $users = [
-        0 => [
-            'productName' => 'arcan',
-            'productID' => 10,
-            'explanation' => 'asdfdas asdfadfan eiuhfnasjdfaknfd  asfnasdfk aadsfa',
-            'image' => null,
-        ]
-    ] ?>
+    @php
+        $products = $allData['products'];
+        $productsImages = $allData['productsImages'];
+    @endphp
+
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -42,67 +40,80 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        {{--<div class="card-header">
-                            <h3 class="card-title"></h3>
-                        </div>--}}
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table id="Data" class="table table-bordered table-striped">
+                            <table id="Data" class="table table-bordered table-striped table table-hover">
                                 <thead>
                                 <tr>
-                                    @foreach($users as $user)
-                                        @foreach($user as $key => $value)
-                                            <th>{{$key}}</th>
-                                        @endforeach
-                                        @break
-                                    @endforeach
-                                    {{--<th>نام کاربری</th>
-                                    <th>ایمیل</th>
-                                    <th>نام</th>
-                                    <th>نام خانوادگی</th>
-                                    <th>شماره همراه</th>--}}
+                                    <th>نام کالا</th>
+                                    <th>توضیحات</th>
+                                    <th>قیمت</th>
+                                    <th>موجودی</th>
+                                    <th>تصاویر</th>
                                     <th>ویرایش</th>
                                     <th>حذف</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($users as $user)
+                                @foreach ($products as $product)
                                     <tr>
-                                        @foreach($user as $key => $value)
-                                            <td>{{ $value }}</td>
-                                        @endforeach
+                                        <td>{{ $product->product_name }}</td>
+                                        <td>{{ $product->explanation }}</td>
+                                        <td>{{ $product->price }}</td>
+                                        <td>{{ $product->amount_available }}</td>
                                         <td>
-                                            <form {{--class="" action="#" method="POST"--}}>
-                                                @csrf
-                                                {{--@method('PUT')--}}
-                                                <input type="hidden" name="id" value="{{--{{ $user->id }}--}}">
-                                                <button type="submit">
-                                                    <i class="fa-regular fa-pen-to-square fa-flip-horizontal"></i>
+                                            @if (count($productsImages["$product->id"]) != 0)
+                                                <div id="productsImages-{{$product->id}}" class="carousel slide"
+                                                     data-bs-ride="carousel">
+                                                    <div class="carousel-inner">
+                                                        @foreach ($productsImages["$product->id"] as $productImage)
+                                                            <div class="carousel-item @if ($loop->first) active @endif">
+                                                                <img src="{{ asset($productImage->image_url) }}"
+                                                                     alt="Product Image"
+                                                                     class="img-thumbnail rounded"
+                                                                     style="object-fit: contain;">
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                    <button class="carousel-control-prev" type="button"
+                                                            data-bs-target="#productsImages-{{$product->id}}"
+                                                            data-bs-slide="prev">
+                                                        <span class="carousel-control-prev-icon"></span>
+                                                    </button>
+                                                    <button class="carousel-control-next" type="button"
+                                                            data-bs-target="#productsImages-{{$product->id}}"
+                                                            data-bs-slide="next">
+                                                        <span class="carousel-control-next-icon"></span>
+                                                    </button>
+                                                </div>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <form action="{{ route('edit_product', ['id' => $product->id]) }}"
+                                                  method="get">
+                                                <button type="submit"><i
+                                                            class="fa-regular fa-pen-to-square fa-flip-horizontal"></i>
                                                 </button>
                                             </form>
                                         </td>
                                         <td>
-                                            <form {{--class="" action="#" method="POST"--}}>
+                                            <form action="{{ route('delete_product', ['id' => $product->id]) }}"
+                                                  method="post">
                                                 @csrf
-                                                {{--@method('DELETE')--}}
-                                                <input type="hidden" name="id" value="{{--{{ $user->id }}--}}">
-                                                <button type="submit">
-                                                    <i class="fa-regular fa-trash-can"></i>
-                                                </button>
+                                                <button type="submit" onclick="return confirm('Are you sure?')"><i
+                                                            class="fa-regular fa-trash-can"></i></button>
                                             </form>
                                         </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
-
                                 <tfoot>
                                 <tr>
-                                    @foreach($users as $user)
-                                        @foreach($user as $key => $value)
-                                            <th>{{$key}}</th>
-                                        @endforeach
-                                        @break
-                                    @endforeach
+                                    <th>نام کالا</th>
+                                    <th>توضیحات</th>
+                                    <th>قیمت</th>
+                                    <th>موجودی</th>
+                                    <th>تصاویر</th>
                                     <th>ویرایش</th>
                                     <th>حذف</th>
                                 </tr>
