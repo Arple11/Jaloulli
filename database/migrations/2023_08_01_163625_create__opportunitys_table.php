@@ -12,8 +12,12 @@ return new class extends Migration {
     {
         Schema::create('opportunities', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned()->nullable(FALSE);
+            $table->bigInteger('customer_id')->unsigned()->nullable(FALSE);
+            $table->bigInteger('product_id')->unsigned()->nullable(FALSE);
+            $table->bigInteger('price')->nullable(FALSE);
+            $table->bigInteger('quantity')->nullable(FAlSE);
             $table->longText('opportunity_explanation');
+            $table->enum('opportunity_status', ['follow_up', 'ongoing', 'finished']);
             $table->boolean('is_urgent')->default(FALSE);
             $table->timestamps();
         });

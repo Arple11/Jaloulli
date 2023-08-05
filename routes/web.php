@@ -57,6 +57,7 @@ Route::prefix('Product')->group(function ()
 Route::prefix('Opportunity')->group(function ()
 {
     Route::view('/add_Opportunity','opportunitys.addOpportunity')->name('addOpportunity');
+    Route::post('/store_opportunities',[OpportunitiesController::class,'store'])->name('store_opportunities');
     Route::view('/Opportunitys','opportunitys.opportunitysData')->name('Opportunitys_data');
 
 });

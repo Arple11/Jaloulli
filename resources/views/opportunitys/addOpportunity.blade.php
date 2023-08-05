@@ -58,14 +58,14 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="explanation">توضیحات</label>
-                            <textarea class="form-control" rows="4" id="explanation" name="explanation"
+                            <label for="opportunity_explanation">توضیحات</label>
+                            <textarea class="form-control" rows="4" id="opportunity_explanation" name="opportunity_explanation"
                                       placeholder="لطفا توضیحات مربوطه را وارد کنید"></textarea>
                         </div>
 
                         <div class="form-group">
-                            <label for="status">وضعیت</label>
-                            <select class="form-control" id="status" name="status">
+                            <label for="staopportunity_statustus">وضعیت</label>
+                            <select class="form-control" id="opportunity_statusstatus" name="opportunity_status">
                             <option value="follow_up">در حال پیگیری</option>
                             <option value="ongoing">در حال اجرا</option>
                             <option value="finished">پایان یافته</option>
