@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('amount_available')->unsigned()->default(0);
             $table->integer('amount_sold')->unsigned()->default(0);
             $table->string('tags',150)->nullable();
-            $table->boolean('enable')->default(1);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

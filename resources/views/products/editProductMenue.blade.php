@@ -36,8 +36,8 @@
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="productName">نام محصول</label>
-                            <input type="text" class="form-control" id="productName" name="productName"
+                            <label for="product_name">نام محصول</label>
+                            <input type="text" class="form-control" id="product_name" name="product_name"
                                    value="{{$product->product_name}}">
                         </div>
                         <div class="form-group">
@@ -61,8 +61,6 @@
                             >{{$product->explanation}}</textarea>
                         </div>
                     </div>
-                    <!-- /.card-body -->
-
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">ارسال</button>
                     </div>

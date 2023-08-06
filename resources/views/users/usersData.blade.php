@@ -41,6 +41,7 @@
                             <table id="Data" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
+                                    <th>نقش</th>
                                     <th>نام کاربری</th>
                                     <th>ایمیل</th>
                                     <th>نام</th>
@@ -53,6 +54,7 @@
                                 <tbody>
                                 @foreach ($users as $user)
                                     <tr>
+                                        <th>{{ $user->role }}</th>
                                         <td>{{ $user->user_name }}</td>
                                         <td>{{ $user->email}}</td>
                                         <td>{{ $user->first_name }}</td>
@@ -80,6 +82,7 @@
                                 </tbody>
                                 <tfoot>
                                 <tr>
+                                    <th>نقش</th>
                                     <th>نام کاربری</th>
                                     <th>ایمیل</th>
                                     <th>نام</th>
