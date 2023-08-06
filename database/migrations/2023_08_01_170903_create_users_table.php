@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,15 +12,15 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('email',50)->unique();
-            $table->string('first_name',30);
-            $table->string('last_name',30);
-            $table->string('user_name',30)->unique();
-            $table->string('phone_number',10);
+            $table->string('email', 50)->unique();
+            $table->string('first_name', 30);
+            $table->string('last_name', 30);
+            $table->string('user_name', 30)->unique();
+            $table->string('phone_number', 10);
             $table->tinyInteger('role')->default(1)->unsigned();
             $table->smallInteger('age')->unsigned();
-            $table->string('gender',10);
-            $table->string('education',15);
+            $table->enum('gender', ['male', 'female', 'other'])->default('male');
+            $table->enum('education', ['high_school', 'bachelor', 'master', 'doctorate'])->default('high_school');
             $table->string('occupation');
             $table->text('interests')->nullable();
             $table->text('hobbies')->nullable();
@@ -29,7 +28,7 @@ return new class extends Migration
             $table->bigInteger('postal_code');
             $table->string('address');
             $table->string('password');
-            $table->boolean('enable')->default(1);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
