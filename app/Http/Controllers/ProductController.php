@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\product_image;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -24,29 +26,13 @@ class ProductController extends Controller
                 $imageUrls[] = "productImages/{$request->post('productName')}/" . "$name";
             }
         }
-        #inserting product data to products table
-        DB::table('products')->insert([
-            'product_name' => $request->post('productName'),
-            'explanation' => $request->post('explanation'),
-            'price' => $request->post('price'),
-            'amount_available' => $request->post('amount_available'),
-            'amount_sold' => $request->post('amount_sold'),
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        #getting the id that mysql has set for product and using it for putting images urls into table with product id
-        $product = DB::table('products')
-            ->where(['product_name' => $request->post('productName')])
-            ->select(['id'])
-            ->first();
+        $product = Product::create($request->all());
         #inserting [ product id, image url ] to product_images table
         foreach ($imageUrls as $imageUrl) {
-            DB::table('product_images')
-                ->insert([
-                    'product_id' => $product->id,
-                    'image_url' => $imageUrl,
-                ]);
-
+            product_image::create([
+                'product_id' => $product->id,
+                'image_url' => $imageUrl,
+            ]);
         }
         return redirect()->route('Products_data');
     }
@@ -107,18 +93,18 @@ class ProductController extends Controller
         return view('products.editProductMenue', ['product' => $data]);
     }
 
-    public function store_edited_product(Request $request,$id): RedirectResponse
+    public function store_edited_product(Request $request, $id): RedirectResponse
     {
         DB::table('products')
-            ->where('id' , '=' , $id)
+            ->where('id', '=', $id)
             ->update([
-            'product_name' => $request->post('productName'),
-            'explanation' => $request->post('explanation'),
-            'price' => $request->post('price'),
-            'amount_available' => $request->post('amount_available'),
-            'amount_sold' => $request->post('amount_sold'),
-            'updated_at' => now(),
-        ]);
+                'product_name' => $request->post('product_name'),
+                'explanation' => $request->post('explanation'),
+                'price' => $request->post('price'),
+                'amount_available' => $request->post('amount_available'),
+                'amount_sold' => $request->post('amount_sold'),
+                'updated_at' => now(),
+            ]);
         return redirect()->route('Products_data');
     }
 }
