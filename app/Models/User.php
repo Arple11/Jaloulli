@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -63,7 +66,7 @@ use Laravel\Sanctum\HasApiTokens;
  */
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -109,4 +112,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public static function getAllUsers()
+    {
+        return User::select('email', 'first_name', 'last_name', 'user_name', 'phone_number', 'id','role')->get();
+    }
+    public static function storeEditedUser(Request $request,$id)
+    {
+        $data = $request->all();
+
+        /*
+         * removing the token
+         */
+        array_shift($data);
+
+        return User::find($id)->update($data);
+    }
 }
