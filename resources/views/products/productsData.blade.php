@@ -175,7 +175,8 @@
             "lengthChange": true,
             "searching": true,
             "ordering": true,
-            "autoWidth": true
+            "autoWidth": true,
+            "pageLength": 5
         });
     });
 </script>
