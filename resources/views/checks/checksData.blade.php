@@ -77,11 +77,11 @@
                                             </form>
                                         </td>
                                         <td>
-                                            <form {{--class="" action="#" method="POST"--}}>
+                                            {{--                                                    id که این جا است اسم ایدی است که توی یوزر کنترولر در قسمت public function get_all_users است--}}
+                                            <form class="" action="{{route('delete_check',['id'=>$check->id])}}"
+                                                  method="post">
                                                 @csrf
-                                                {{--@method('DELETE')--}}
-                                                <input type="hidden" name="id" value="{{--{{ $user->id }}--}}">
-                                                <button type="submit">
+                                                <button type="submit" onclick="return confirm('Are you sure?')">
                                                     <i class="fa-regular fa-trash-can"></i>
                                                 </button>
                                             </form>
