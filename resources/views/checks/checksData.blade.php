@@ -51,27 +51,21 @@
                             <table id="Data" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
-                                    @foreach($users as $user)
-                                        @foreach($user as $key => $value)
-                                            <th>{{$key}}</th>
-                                        @endforeach
-                                        @break
-                                    @endforeach
-                                    {{--<th>نام کاربری</th>
-                                    <th>ایمیل</th>
-                                    <th>نام</th>
-                                    <th>نام خانوادگی</th>
-                                    <th>شماره همراه</th>--}}
+                                    <th>شماره سفارش</th>
+                                    <th>id مشتری</th>
+                                    <th>id فروشنده</th>
+                                    <th>مبلغ فاکتور</th>
                                     <th>ویرایش</th>
                                     <th>حذف</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($users as $user)
+                                @foreach ($checks as $check)
                                     <tr>
-                                        @foreach($user as $key => $value)
-                                            <td>{{ $value }}</td>
-                                        @endforeach
+                                        <td>{{ $check->order_number }}</td>
+                                        <td>{{ $check->customer_id}}</td>
+                                        <td>{{ $check->seller_id }}</td>
+                                        <td>{{ $check->total_pay }}</td>
                                         <td>
                                             <form {{--class="" action="#" method="POST"--}}>
                                                 @csrf
@@ -98,12 +92,10 @@
 
                                 <tfoot>
                                 <tr>
-                                    @foreach($users as $user)
-                                        @foreach($user as $key => $value)
-                                            <th>{{$key}}</th>
-                                        @endforeach
-                                        @break
-                                    @endforeach
+                                    <th>شماره سفارش</th>
+                                    <th>id مشتری</th>
+                                    <th>id فروشنده</th>
+                                    <th>مبلغ فاکتور</th>
                                     <th>ویرایش</th>
                                     <th>حذف</th>
                                 </tr>

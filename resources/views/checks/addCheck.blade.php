@@ -37,37 +37,31 @@
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="checkNum">شماره فاکتور</label>
-                            <input type="number" class="form-control" id="checkNum" name="checkNum"
-                                   placeholder="شماره فاکتور را وارد کنید">
+                            <label for="order_number">شماره سفارش</label>
+                            <input type="integer" class="form-control" id="order_number" name="order_number"
+                                   placeholder="شماره سفارش را وارد کنید">
                         </div>
                         <div class="form-group">
-                            <label for="customerName">نام خانوادگی مشتری</label>
-                            <input type="text" class="form-control" id="customerName" name="customerName"
-                                   placeholder="نام خانوادگی مشتری">
+                            <label for="customer_id">id مشتری</label>
+                            <input type="integer" class="form-control" id="customer_id" name="customer_id"
+                                   placeholder="id مشتری">
+
+                            <div class="form-group">
+                                <label for="seller_id">id فروشنده </label>
+                                <input type="integer" class="form-control" id="seller_id" name="seller_id"
+                                       placeholder="id فروشنده">
+
                         </div>
                         <div class="form-group">
-                            <label for="customerPhoneNum">شماره تلفن مشتری</label>
-                            <input type="text" class="form-control" id="customerPhoneNum" name="customerPhoneNum"
-                                   placeholder="شماره تلفن مشتری">
-                        </div>
-                        <div class="form-group">
-                            <label for="totalPay">مبلغ فاکتور</label>
-                            <input type="password" class="form-control" id="totalPay" name="totalPay"
+                            <label for="total_pay">مبلغ فاکتور</label>
+                            <input type="bigInteger" class="form-control" id="total_pay" name="total_pay"
                                    placeholder="مبلغ فاکتور را وارد کنید">
-                        </div>
-                        <div class="form-group">
-                            <label for="checkImage">ارسال فایل</label>
-                            <div class="input-group">
-                                <div class="custom-file">
+
                                     <input type="file" class="custom-file-input" id="checkImage" name="checkImage"
                                            accept="image/*,.pdf,.doc">
                                     <label class="custom-file-label" for="exampleInputFile">انتخاب اسکن
                                         فاکتور</label>
-                                </div>
-                                <div class="input-group-append">
-                                    <span class="input-group-text" id="">Upload</span>
-                                </div>
+
                             </div>
                         </div>
                     </div>
