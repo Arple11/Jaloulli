@@ -9,16 +9,6 @@
 
     @include('.styleSheets.dataStyle')
     @include('.styleSheets.styleSheets')
-    <?php
-    $users = [
-        '123' => [
-            'email' => 'alighaforian@yahoo.com',
-            'phone_number' => '09382580898',
-            'productID' => 53,
-            'explanation' => 'dsf asdf adsf sdf sdsf f a dfgf sd ad f',
-            'image' => null,
-        ]
-    ] ?>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -51,59 +41,52 @@
                             <table id="Data" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
-                                    @foreach($users as $user)
-                                        @foreach($user as $key => $value)
-                                            <th>{{$key}}</th>
-                                        @endforeach
-                                        @break
-                                    @endforeach
-                                    {{--<th>نام کاربری</th>
-                                    <th>ایمیل</th>
-                                    <th>نام</th>
-                                    <th>نام خانوادگی</th>
-                                    <th>شماره همراه</th>--}}
+                                    <th>customer_id</th>
+                                    <th>seller_id</th>
+                                    <th>explanations</th>
+                                    <th>order_total_price</th>
+                                    <th>balance</th>
                                     <th>ویرایش</th>
                                     <th>حذف</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($users as $user)
+                                @foreach ($orders as $order)
                                     <tr>
-                                        @foreach($user as $key => $value)
-                                            <td>{{ $value }}</td>
-                                        @endforeach
+                                        <td>{{ $order->customer_id }}</td>
+                                        <td>{{ $order->seller_id }}</td>
+                                        <td>{{ $order->explanations }}</td>
+                                        <td>{{ $order->order_total_price }}</td>
+                                        <td>{{ $order->balance }}</td>
                                         <td>
-                                            <form {{--class="" action="#" method="POST"--}}>
-                                                @csrf
-                                                {{--@method('PUT')--}}
-                                                <input type="hidden" name="id" value="{{--{{ $user->id }}--}}">
+                                            <form class="" action="{{route('edite_user',['id'=>$order->id])}}"
+                                                  method="get">
                                                 <button type="submit">
                                                     <i class="fa-regular fa-pen-to-square fa-flip-horizontal"></i>
                                                 </button>
                                             </form>
                                         </td>
                                         <td>
-                                            <form {{--class="" action="#" method="POST"--}}>
+                                            <form class="" action="{{route('delete_order',['id'=>$order->id])}}"
+                                                  method="post">
                                                 @csrf
-                                                {{--@method('DELETE')--}}
-                                                <input type="hidden" name="id" value="{{--{{ $user->id }}--}}">
-                                                <button type="submit">
+                                                <button type="submit" onclick="return confirm('Are you sure?')">
                                                     <i class="fa-regular fa-trash-can"></i>
                                                 </button>
                                             </form>
                                         </td>
                                     </tr>
+
                                 @endforeach
                                 </tbody>
 
                                 <tfoot>
                                 <tr>
-                                    @foreach($users as $user)
-                                        @foreach($user as $key => $value)
-                                            <th>{{$key}}</th>
-                                        @endforeach
-                                        @break
-                                    @endforeach
+                                    <th>customer_id</th>
+                                    <th>seller_id</th>
+                                    <th>explanations</th>
+                                    <th>order_total_price</th>
+                                    <th>balance</th>
                                     <th>ویرایش</th>
                                     <th>حذف</th>
                                 </tr>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>پنل مدیریت | داشبورد اول</title>
+    <title>پنل مدیریت | کاربر جدید</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @include('styleSheets.styleSheets')
@@ -22,28 +22,28 @@
         @include('Sidebar.Sidebar')
         <!-- /.sidebar -->
     </aside>
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
 
         <!-- Content Header (Page header) -->
-        @include('header.adding.addOrder_header')
         <!-- /.content-header -->
         <!-- Main row -->
         <section class="content">
             <!-- form start -->
             <div class="container-fluid">
-                <form role="form" method="post" action="{{route('store_order')}}">
+                <form role="form" method="post" action="{{route('save_edited_order',['id'=>$order->id])}}">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
                             <label for="customer_id">customer_id</label>
                             <input type="number" class="form-control" id="customer_id" name="customer_id"
+                                   value="{{$order->customer_id}}"
                                    placeholder="customer_id">
                         </div>
                         <div class="form-group">
                             <label for="seller_id">seller_id</label>
                             <input type="number" class="form-control" id="seller_id" name="seller_id"
+                                   value="{{$order->seller_id}}"
                                    placeholder="seller_id">
                         </div>
                         <div class="form-group">
@@ -54,12 +54,20 @@
                         <div class="form-group">
                             <label for="order_total_price">order_total_price</label>
                             <input type="number" class="form-control" id="order_total_price" name="order_total_price"
+                                   value="{{$order->order_total_price}}"
+                                   placeholder="seller_id">
+                        </div>
+                        <div class="form-group">
+                            <label for="balance">balance</label>
+                            <input type="number" class="form-control" id="balance" name="balance"
+                                   readonly
+                                   value="{{$order->balance}}"
                                    placeholder="order_total_price">
                         </div>
                         <div class="form-group">
                             <label for="explanations">explanations</label>
                             <textarea class="form-control" id="explanations" name="explanations"
-                                      placeholder="explanations"></textarea>
+                                      placeholder="explanations">{{$order->explanations}}</textarea>
                         </div>
                     </div>
                     <!-- /.card-body -->
