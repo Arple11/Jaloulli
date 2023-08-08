@@ -67,7 +67,7 @@ Route::prefix('Check')->group(function ()
     Route::view('/add_Check','checks.addCheck')->name('addCheck');
 
     Route::post('/submit_Check', [CheckController::class, 'create'])->name('submitCheck');
-    Route::view('/Checks','checks.checksData')->name('Checks_data');
+    Route::get('/Checks',[CheckController::class,'get_all_checks'])->name('Checks_data');
 });
 
 Route::prefix('Order')->group(function ()

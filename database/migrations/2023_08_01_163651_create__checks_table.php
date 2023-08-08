@@ -12,10 +12,10 @@ return new class extends Migration {
     {
         Schema::create('checks', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('seller_id')->unsigned()->nullable(FALSE);
-            $table->bigInteger('customer_id')->unsigned()->nullable(FALSE);
-            $table->bigInteger('total_amount')->unsigned();
-            $table->bigInteger('order_id')->unsigned()->nullable(FALSE); #for witch order was it from
+            $table->integer('order_number');
+            $table->integer('customer_id');
+            $table->integer('seller_id');
+            $table->bigInteger('total_pay');
             $table->timestamps();
         });
     }
@@ -28,3 +28,7 @@ return new class extends Migration {
         Schema::dropIfExists('_checks');
     }
 };
+
+
+
+
