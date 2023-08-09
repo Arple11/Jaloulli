@@ -54,7 +54,7 @@
                                 <tbody>
                                 @foreach ($users as $user)
                                     <tr>
-                                        <th>{{ $user->role }}</th>
+                                        <th>{{ $user->role->role_name }}</th>
                                         <td>{{ $user->user_name }}</td>
                                         <td>{{ $user->email}}</td>
                                         <td>{{ $user->first_name }}</td>

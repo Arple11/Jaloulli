@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('customer_id')->unsigned();
             $table->bigInteger('seller_id')->unsigned();
-            $table->longText('explanations');
+            $table->longText('explanations')->nullable();
             $table->bigInteger('order_total_price')->default(0);
             $table->bigInteger('balance')->default(0);
             $table->softDeletes();
