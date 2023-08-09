@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\ProductImage;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 
 /**
@@ -43,6 +44,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static Builder|Product whereDeletedAt($value)
  * @method static Builder|Product withTrashed()
  * @method static Builder|Product withoutTrashed()
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Order> $orders
+ * @property-read int|null $orders_count
  * @mixin \Eloquent
  */
 class Product extends Model
@@ -135,6 +138,11 @@ class Product extends Model
         ]);
         $product->save();
         return $product;
+    }
+
+    public function orders(): BelongsToMany
+    {
+        return $this->belongsToMany(Order::class);
     }
 }
 

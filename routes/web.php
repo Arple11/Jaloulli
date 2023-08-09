@@ -69,12 +69,12 @@ Route::prefix('Check')->group(function () {
 });
 
 Route::prefix('Order')->group(function () {
-    Route::get('/Orders', [OrderController::class, 'get_all_orders'])->name('Orders_data');
-    Route::post('/delete_order/{id}', [OrderController::class, 'delete_order'])->name('delete_order');
-    Route::post('/store_Order', [OrderController::class, 'add_order'])->name('store_order');
-    Route::view('/add_Order', 'orders.addOrder')->name('addOrder');
-    Route::get('edite order/{id}', [OrderController::class, 'edite_order'])->name('edite_user');
-    Route::post('/storing_editedOrder/{id}', [OrderController::class, 'save_edited_order'])
+    Route::get('/Orders', [OrderController::class, 'getAllOrders'])->name('Orders_data');
+    Route::post('/delete_order/{id}', [OrderController::class, 'deleteOrder'])->name('delete_order');
+    Route::post('/store_Order', [OrderController::class, 'addOrder'])->name('store_order');
+    Route::get('/add_Order', [OrderController::class,'addOrderPage'])->name('addOrder');
+    Route::get('edite order/{id}', [OrderController::class, 'editOrder'])->name('edite_user');
+    Route::post('/storing_editedOrder/{id}', [OrderController::class, 'saveEditedOrder'])
         ->name('save_edited_order');
 });
 

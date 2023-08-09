@@ -73,6 +73,7 @@ use Illuminate\Notifications\DatabaseNotificationCollection;
  * @method static Builder|User whereUserName($value)
  * @method static Builder|User withTrashed()
  * @method static Builder|User withoutTrashed()
+ * @property-read \App\Models\Role|null $role
  * @mixin \Eloquent
  */
 class User extends Authenticatable

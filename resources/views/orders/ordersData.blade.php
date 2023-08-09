@@ -38,60 +38,117 @@
                         </div>--}}
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table id="Data" class="table table-bordered table-striped">
-                                <thead>
-                                <tr>
-                                    <th>customer_id</th>
-                                    <th>seller_id</th>
-                                    <th>explanations</th>
-                                    <th>order_total_price</th>
-                                    <th>balance</th>
-                                    <th>ویرایش</th>
-                                    <th>حذف</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach ($orders as $order)
+                            <div class="container">
+                                <table id="Data" class="table table-bordered table-striped">
+                                    <thead>
                                     <tr>
-                                        <td>{{ $order->customer_id }}</td>
-                                        <td>{{ $order->seller_id }}</td>
-                                        <td>{{ $order->explanations }}</td>
-                                        <td>{{ $order->order_total_price }}</td>
-                                        <td>{{ $order->balance }}</td>
-                                        <td>
-                                            <form class="" action="{{route('edite_user',['id'=>$order->id])}}"
-                                                  method="get">
-                                                <button type="submit">
-                                                    <i class="fa-regular fa-pen-to-square fa-flip-horizontal"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                        <td>
-                                            <form class="" action="{{route('delete_order',['id'=>$order->id])}}"
-                                                  method="post">
-                                                @csrf
-                                                <button type="submit" onclick="return confirm('Are you sure?')">
-                                                    <i class="fa-regular fa-trash-can"></i>
-                                                </button>
-                                            </form>
-                                        </td>
+                                        <th>مشتری</th>
+                                        <th>فروشنده</th>
+                                        <th>توضیحات</th>
+                                        <th>لیست محصولات</th>
+                                        <th>قیمت کل</th>
+                                        <th>بدهی</th>
+                                        <th>ویرایش</th>
+                                        <th>حذف</th>
                                     </tr>
-
-                                @endforeach
-                                </tbody>
-
-                                <tfoot>
-                                <tr>
-                                    <th>customer_id</th>
-                                    <th>seller_id</th>
-                                    <th>explanations</th>
-                                    <th>order_total_price</th>
-                                    <th>balance</th>
-                                    <th>ویرایش</th>
-                                    <th>حذف</th>
-                                </tr>
-                                </tfoot>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                    @php($temp = 0)
+                                    @foreach ($orders as $order)
+                                        <tr>
+                                            <td>
+                                                <a class="btn" data-bs-toggle="collapse"
+                                                   href="#collapseC{{$order->customer->id}}{{$temp}}">
+                                                    {{$order->customer->id}}
+                                                </a>
+                                                <div id="collapseC{{$order->customer->id}}{{$temp++}}"
+                                                     class="collapse"
+                                                     data-bs-parent="#accordion">
+                                                    <div class="card-body">
+                                                        <table>
+                                                            <tr>
+                                                                <th>{{$order->customer->first_name}} {{$order->customer->last_name}}</th>
+                                                                <th>{{$order->customer->email}}</th>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a class="btn" data-bs-toggle="collapse"
+                                                   href="#collapseS{{$order->seller->id}}{{$temp}}">
+                                                    {{$order->seller->id}}
+                                                </a>
+                                                <div id="collapseS{{$order->seller->id}}{{$temp++}}"
+                                                     class="collapse"
+                                                     data-bs-parent="#accordion">
+                                                    <div class="card-body">
+                                                        <table>
+                                                            <tr>
+                                                                <th>{{$order->seller->first_name}} {{$order->seller->last_name}}</th>
+                                                                <th>{{$order->seller->email}}</th>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>{{ $order->explanations }}</td>
+                                            <td>
+                                                <a class="btn" data-bs-toggle="collapse"
+                                                   href="#collapseP{{$order->id}}">
+                                                    All products
+                                                </a>
+                                                <div id="collapseP{{$order->id}}" class="collapse"
+                                                     data-bs-parent="#accordion">
+                                                    <div class="card-body">
+                                                        <table>
+                                                            @foreach($order->products as $product)
+                                                                <tr>
+                                                                    <td>name : {{$product->product_name}}</td>
+                                                                    <td>price : {{$product->price}}</td>
+                                                                    <td>count : {{$product->pivot->count}}</td>
+                                                                </tr>
+                                                            @endforeach
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>{{ $order->order_total_price }}</td>
+                                            <td>{{ $order->balance }}</td>
+                                            <td>
+                                                <form class="" action="{{route('edite_user',['id'=>$order->id])}}"
+                                                      method="get">
+                                                    <button type="submit">
+                                                        <i class="fa-regular fa-pen-to-square fa-flip-horizontal"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <form class="" action="{{route('delete_order',['id'=>$order->id])}}"
+                                                      method="post">
+                                                    @csrf
+                                                    <button type="submit" onclick="return confirm('Are you sure?')">
+                                                        <i class="fa-regular fa-trash-can"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                    {{--<tfoot>
+                                    <tr>
+                                        <th>مشتری</th>
+                                        <th>فروشنده</th>
+                                        <th>توضیحات</th>
+                                        <th>لیست محصولات</th>
+                                        <th>قیمت کل</th>
+                                        <th>بدهی</th>
+                                        <th>ویرایش</th>
+                                        <th>حذف</th>
+                                    </tr>
+                                    </tfoot>--}}
+                                </table>
+                            </div>
                         </div>
                         <!-- /.card-body -->
                     </div>

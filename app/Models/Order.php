@@ -4,8 +4,12 @@ namespace App\Models;
 
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
 
 /**
  * App\Models\Order
@@ -13,12 +17,16 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property int $customer_id
  * @property int $seller_id
- * @property string $explanations
+ * @property string|null $explanations
  * @property int $order_total_price
  * @property int $balance
  * @property Carbon|null $deleted_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property-read \App\Models\User|null $customer
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product> $products
+ * @property-read int|null $products_count
+ * @property-read \App\Models\User|null $seller
  * @method static \Illuminate\Database\Eloquent\Builder|Order newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Order newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Order onlyTrashed()
@@ -50,4 +58,16 @@ class Order extends Model
         'balance',
     ];
 
+    public function products(): BelongsToMany
+    {
+        return $this->belongsToMany(Product::class);
+    }
+    public function seller(): BelongsTo
+    {
+        return $this->belongsTo(User::class,'seller_id');
+    }
+    public function customer(): BelongsTo
+    {
+        return $this->belongsTo(User::class,'customer_id');
+    }
 }
