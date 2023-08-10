@@ -169,7 +169,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('Opportunitys_data')}}" class="nav-link">
+                            <a href="{{route('opportunities_data')}}" class="nav-link">
                                 <i class="fas fa-list nav-icon"></i>
                                 <p> لیست فرصتها</p>
                             </a>

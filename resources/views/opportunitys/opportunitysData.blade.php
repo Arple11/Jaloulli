@@ -9,17 +9,6 @@
 
     @include('.styleSheets.dataStyle')
     @include('.styleSheets.styleSheets')
-    <?php
-    $users = [
-        '123' => [
-            'email' => 'alighaforian@yahoo.com',
-            'phone_number' => '09382580898',
-            'username' => 'arcan',
-            'explanation' => 'ali',
-            'file' => null,
-            'urgent' => TRUE,
-        ]
-    ] ?>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -52,51 +41,40 @@
                             <table id="Data" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
-                                    @foreach($users as $user)
-                                        @foreach($user as $key => $value)
-                                            <th>{{$key}}</th>
-                                        @endforeach
-                                        @break
-                                    @endforeach
-                                    {{--<th>نام کاربری</th>
-                                    <th>ایمیل</th>
-                                    <th>نام</th>
-                                    <th>نام خانوادگی</th>
-                                    <th>شماره همراه</th>--}}
+                                    <th>کد مشتری</th>
+                                    <th>کد محصول</th>
+                                    <th>قیمت</th>
+                                    <th>تعداد</th>
+                                    <th>توضیحات</th>
+                                    <th>وضعیت</th>
+                                    <th>فوری</th>
                                     <th>ویرایش</th>
                                     <th>حذف</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($users as $user)
+                                @foreach ($opportunities as $opportunity)
                                     <tr>
-                                        @foreach($user as $key => $value)
-                                            <td>
-                                                @if($value === TRUE)
-                                                    {{'true'}}
-                                                @elseif($value === FALSE)
-                                                    {{ 'false'}}
-                                                @else
-                                                    {{$value}}
-                                                @endif
-                                            </td>
-                                        @endforeach
+                                        <th>{{ $opportunity->customer_id}}</th>
+                                        <td>{{ $opportunity->product_id}}</td>
+                                        <td>{{ $opportunity->price}}</td>
+                                        <td>{{ $opportunity->quantity}}</td>
+                                        <td>{{ $opportunity->opportunity_explanation}}</td>
+                                        <td>{{ $opportunity->opportunity_status}}</td>
+
                                         <td>
-                                            <form {{--class="" action="#" method="POST"--}}>
-                                                @csrf
-                                                {{--@method('PUT')--}}
-                                                <input type="hidden" name="id" value="{{--{{ $user->id }}--}}">
-                                                <button type="submit">
+                                            <form class="" action="{{route('edit_opportunities',['id'=>$opportunity->id])}}"
+                                                  method="get">
+                                                <button type="submit" >
                                                     <i class="fa-regular fa-pen-to-square fa-flip-horizontal"></i>
                                                 </button>
                                             </form>
                                         </td>
                                         <td>
-                                            <form {{--class="" action="#" method="POST"--}}>
+                                            <form class="" action="{{route('opportunities_delete',['id'=>$opportunity->id])}}"
+                                                  method="post">
                                                 @csrf
-                                                {{--@method('DELETE')--}}
-                                                <input type="hidden" name="id" value="{{--{{ $user->id }}--}}">
-                                                <button type="submit">
+                                                <button type="submit" onclick="return confirm('Are you sure?')">
                                                     <i class="fa-regular fa-trash-can"></i>
                                                 </button>
                                             </form>
@@ -107,12 +85,13 @@
 
                                 <tfoot>
                                 <tr>
-                                    @foreach($users as $user)
-                                        @foreach($user as $key => $value)
-                                            <th>{{$key}}</th>
-                                        @endforeach
-                                        @break
-                                    @endforeach
+                                    <th>کد مشتری</th>
+                                    <th>کد محصول</th>
+                                    <th>قیمت</th>
+                                    <th>تعداد</th>
+                                    <th>توضیحات</th>
+                                    <th>وضعیت</th>
+                                    <th>فوری</th>
                                     <th>ویرایش</th>
                                     <th>حذف</th>
                                 </tr>
