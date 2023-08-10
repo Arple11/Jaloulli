@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\OpportunityController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Arr;
 use App\Http\Controllers\checkController;
@@ -73,12 +74,18 @@ Route::prefix('Check')->group(function ()
     Route::post('/submit_Check', [CheckController::class, 'create'])->name('submitCheck');
     Route::get('/Checks',[CheckController::class,'get_all_checks'])->name('Checks_data');
     Route::post('/delete_check/{id}',[CheckController::class,'delete_check'])->name('delete_check');
+    Route::post('/edit_check/{id}',[CheckController::class,'store_edited_check'])->name('store_edited_check');
+    Route::get('/edit_check/{id}',[CheckController::class,'editCheck'])->name('edit_check');
+
 });
 
 Route::prefix('Order')->group(function ()
 {
     Route::view('/add_Order','orders.addOrder')->name('addOrder');
+    Route::post('/Order_Check', [OrderController::class, 'create'])->name('submitOrder');
+    Route::get('/Order',[OrderController::class,'get_all_Order'])->name('Order_data');
     Route::view('/Orders','orders.ordersData')->name('Orders_data');
+    Route::post('/delete_order/{id}',[OrderController::class,'delete_order'])->name('delete_order');
 
 
 });

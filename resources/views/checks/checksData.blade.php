@@ -13,9 +13,9 @@
     $users = [
         '123' => [
             'checkNum' => 456,
-            'last_name' => 'Ghaforian',
-            'phone_number' => '09382580898',
-            'total_check' => 4548852,
+            'last_name' => 'Akhtari',
+            'phone_number' => '09121236610',
+            'total_check' => 884455,
             'file' => null,
         ]
     ] ?>
@@ -67,19 +67,18 @@
                                         <td>{{ $check->seller_id }}</td>
                                         <td>{{ $check->total_pay }}</td>
                                         <td>
-                                            <form {{--class="" action="#" method="POST"--}}>
-                                                @csrf
-                                                {{--@method('PUT')--}}
-                                                <input type="hidden" name="id" value="{{--{{ $user->id }}--}}">
-                                                <button type="submit">
-                                                    <i class="fa-regular fa-pen-to-square fa-flip-horizontal"></i>
-                                                </button>
+                                            <form class="" action="{{route('edit_check',['id'=>$check->id])}}">
+                                            @csrf
+                                            {{--@method('PUT')--}}
+                                            <input type="hidden" name="id" value="{{--{{ $user->id }}--}}">
+                                            <button type="submit">
+                                                <i class="fa-regular fa-pen-to-square fa-flip-horizontal"></i>
+                                            </button>
+
                                             </form>
                                         </td>
                                         <td>
-                                            {{--                                                    id که این جا است اسم ایدی است که توی یوزر کنترولر در قسمت public function get_all_users است--}}
-                                            <form class="" action="{{route('delete_check',['id'=>$check->id])}}"
-                                                  method="post">
+                                            <form class="" action="{{route('delete_check',['id'=>$check->id])}}" method="post">
                                                 @csrf
                                                 <button type="submit" onclick="return confirm('Are you sure?')">
                                                     <i class="fa-regular fa-trash-can"></i>

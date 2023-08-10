@@ -1,10 +1,7 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
 class CheckController extends Controller
 {
     public function create(Request $request)
@@ -35,4 +32,35 @@ class CheckController extends Controller
 
         return redirect()->route('Checks_data');
     }
+    public function editCheck($id)
+    {
+       $check=DB::table('checks')->where('id',$id)
+           ->select('order_number','seller_id','customer_id','total_pay','id as checkid')
+           ->first();
+
+//       dd($check);
+        return view('checks.editCheckMenue',['check'=>$check]);
+    }
+    public function store_edited_check(Request $request,$id){
+//        dd($request);
+        $check=DB::table('checks')->where('id',$id)
+        ->update([
+            'order_number' => $request->post('order_number'),
+            'customer_id' => $request->post('customer_id'),
+            'seller_id' => $request->post('seller_id'),
+            'total_pay' => $request->post('total_pay'),
+        ]);
+
+        return view('checks.editCheckMenue',['check'=>$check]);
+    }
+
+
+
 }
+
+
+
+
+
+
+//asliasliasliasliasliasliasliasliasliasliasliasliasliasliasliasliasliasliasliasliasliasliasliasliasliasliasliasliasliasliasliasli
