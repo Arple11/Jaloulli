@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->bigInteger('quantity')->nullable(FAlSE);
             $table->longText('opportunity_explanation');
             $table->enum('opportunity_status', ['follow_up', 'ongoing', 'finished']);
-            $table->boolean('is_urgent')->default(FALSE);
+            $table->enum('is_urgent' , ['on' , 'off'])->default('off');
             $table->timestamps();
         });
     }

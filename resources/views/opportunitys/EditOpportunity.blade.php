@@ -38,40 +38,39 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="id">کد مشتری</label>
-                            <input type="number" class="form-control" id="id" name="customer_id"
-                                   placeholder="کد مشتری را وارد کنید">
+                            <input type="number" readonly class="form-control" id="id" name="customer_id"
+                                   value={{$opportunity->customer_id}}>
                         </div>
                         <div class="form-group">
                             <label for="product_id">کد محصول</label>
-                            <input type="number" class="form-control" id="product_id" name="product_id"
-                                   placeholder="کد محصول را وارد کنید">
+                            <input type="number" readonly class="form-control" id="product_id" name="product_id"
+                                   value={{$opportunity->product_id}}>
                         </div>
                         <div class="form-group">
                             <label for="price">قیمت</label>
                             <input type="number" class="form-control" id="price" name="price"
-                                   placeholder="قیمت را وارد کنید">
+                                   value={{$opportunity->price}}>
                         </div>
                         <div class="form-group">
                             <label for="quantity">تعداد</label>
                             <input type="number" class="form-control" id="quantity" name="quantity"
-                                   placeholder="تعداد محصول را وارد کنید">
+                                   value={{$opportunity->quantity}}>
                         </div>
 
                         <div class="form-group">
                             <label for="opportunity_explanation">توضیحات</label>
                             <textarea class="form-control" rows="4" id="opportunity_explanation" name="opportunity_explanation"
-                                      placeholder="لطفا توضیحات مربوطه را وارد کنید"></textarea>
+                                      value={{$opportunity->opportunity_explanation}}></textarea>
                         </div>
 
                         <div class="form-group">
                             <label for="staopportunity_statustus">وضعیت</label>
                             <select class="form-control" id="opportunity_statusstatus" name="opportunity_status">
-                            <option value="follow_up">در حال پیگیری</option>
-                            <option value="ongoing">در حال اجرا</option>
-                            <option value="finished">پایان یافته</option>
+                            <option value="follow_up" @if($opportunity->opportunity_status == 'follow_up') selected @endif>در حال پیگیری</option>
+                            <option value="ongoing" @if($opportunity->opportunity_status == 'ongoing') selected @endif>در حال اجرا</option>
+                            <option value="finished" @if($opportunity->opportunity_status == 'finished') selected @endif>پایان یافته</option>
                             </select>
                         </div>
-
                         <div class="form-check">
 
 
@@ -82,7 +81,7 @@
                                         <polyline points="7.57 15.87 12.62 21.07 23.43 9.93"/>
                                     </svg>
                                 </div>
-                                <div class="form-check-label" for="op_urgent">&nbsp;&nbsp;فوری</div>
+                                <div class="form-check-label" for="op_urgent">فوری</div>
                             </label>
                         </div>
                     </div>

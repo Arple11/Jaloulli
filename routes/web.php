@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OpportunityController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Arr;
 use App\Http\Controllers\checkController;
@@ -57,7 +58,11 @@ Route::prefix('Product')->group(function ()
 Route::prefix('Opportunity')->group(function ()
 {
     Route::view('/add_Opportunity','opportunitys.addOpportunity')->name('addOpportunity');
-    Route::post('/store_opportunities',[OpportunitiesController::class,'store'])->name('store_opportunities');
+    Route::post('/store_opportunities',[OpportunityController::class,'store'])->name('store_opportunities');
+    Route::GET('/all_opportunities' , [OpportunityController::class,'get_all_opportunities'])->name('opportunities_data');
+    Route::GET('/edit_opportunities{id}', [OpportunityController::class,'edit_opportunities'])->name('edit_opportunities');
+    Route::post('/store_edit_opportunities{id}', [OpportunityController::class,'store_edit_opportunities'])->name('store_edit_opportunities');
+    Route::post('/delete_opportunities/{id}', [OpportunityController::class,'delete_opportunities'])->name('opportunities_delete');
     Route::view('/Opportunitys','opportunitys.opportunitysData')->name('Opportunitys_data');
 
 });
