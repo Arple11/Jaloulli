@@ -111,15 +111,7 @@ class Product extends Model
 
     public static function editSelect(int $id)
     {
-        return Product::find($id)
-            ->select([
-                'id',
-                'product_name',
-                'explanation',
-                'price',
-                'amount_available',
-                'amount_sold',
-            ]);
+        return Product::find($id);
     }
 
     public static function saveEditedProduct(Request $request, int $id)
