@@ -127,7 +127,7 @@ class User extends Authenticatable
 
     public static function getAllUsers()
     {
-        return User::select('email', 'first_name', 'last_name', 'user_name', 'phone_number', 'id', 'role_id')->get();
+        return User::select(['email', 'first_name', 'last_name', 'user_name', 'phone_number', 'id', 'role_id'])->get();
     }
 
     public static function storeEditedUser(Request $request, $id)

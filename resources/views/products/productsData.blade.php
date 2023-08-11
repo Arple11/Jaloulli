@@ -10,10 +10,6 @@
 
     @include('.styleSheets.dataStyle')
     @include('.styleSheets.styleSheets')
-    @php
-        $products = $allData['products'];
-        $productsImages = $allData['productsImages'];
-    @endphp
 
 
 </head>
@@ -45,9 +41,11 @@
                             <table id="Data" class="table table-bordered table-striped table table-hover">
                                 <thead>
                                 <tr>
+                                    <th>id</th>
                                     <th>نام کالا</th>
                                     <th>توضیحات</th>
                                     <th>قیمت</th>
+                                    <th>سفارشات</th>
                                     <th>موجودی</th>
                                     <th>تصاویر</th>
                                     <th>ویرایش</th>
@@ -55,11 +53,35 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @php($temp = 0)
                                 @foreach ($products as $product)
                                     <tr>
+                                        <td>{{ $product->id }}</td>
                                         <td>{{ $product->product_name }}</td>
                                         <td>{{ $product->explanation }}</td>
                                         <td>{{ $product->price }}</td>
+                                        <td> @if(count($product->orders) > 0)
+                                                <a class="btn" data-bs-toggle="collapse"
+                                                   href="#collapseO{{$product->id}}{{$temp}}">
+                                                    orders
+                                                </a>
+                                                <div id="collapseO{{$product->id}}{{$temp++}}" class="collapse"
+                                                     data-bs-parent="#accordion">
+                                                    <div class="card-body">
+                                                        <table>
+                                                            <th>Order ID</th>
+                                                            <th>Count</th>
+                                                            @foreach($product->orders as $order)
+                                                                <tr>
+                                                                    <td>{{ $order->id }}</td>
+                                                                    <td>{{ $order->pivot->count }}</td>
+                                                                </tr>
+                                                            @endforeach
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        </td>
                                         <td>{{ $product->amount_available }}</td>
                                         <td>
                                             @if (count($productsImages["$product->id"]) != 0)
@@ -109,9 +131,11 @@
                                 </tbody>
                                 <tfoot>
                                 <tr>
+                                    <th>id</th>
                                     <th>نام کالا</th>
                                     <th>توضیحات</th>
                                     <th>قیمت</th>
+                                    <th>سفارشات</th>
                                     <th>موجودی</th>
                                     <th>تصاویر</th>
                                     <th>ویرایش</th>

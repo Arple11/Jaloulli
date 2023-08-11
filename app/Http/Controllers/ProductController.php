@@ -21,7 +21,7 @@ class ProductController extends Controller
     public function all_products(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         #opening productsData view with the passing data
-        return view('products.productsData')->with(['allData' => Product::getAllProductsWithImage()]);
+        return view('products.productsData')->with(Product::getAllProductsWithImage());
     }
 
     public function delete_product($id): RedirectResponse
