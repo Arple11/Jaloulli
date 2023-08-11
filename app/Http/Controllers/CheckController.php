@@ -19,7 +19,7 @@ class CheckController extends Controller
     public function get_all_checks()
     {
         $data = DB::table('checks')
-            ->select('order_number', 'customer_id', 'seller_id', 'total_pay', 'id')
+            ->select('order_id', 'customer_id', 'seller_id', 'total_pay', 'id')
             ->get();
 //        dd($data);
         return (view('checks.checksData')->with(['checks' => $data]));
