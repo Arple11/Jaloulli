@@ -6,9 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Arr;
 use App\Http\Controllers\checkController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\OpportunityController;
 
 /*
 |--------------------------------------------------------------------------
