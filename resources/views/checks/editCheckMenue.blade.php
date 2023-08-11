@@ -44,23 +44,23 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="order_number">شماره سفارش</label>
-                            <input type="integer" class="form-control" id="order_number" name="order_number"
-                                   placeholder="{{$check->order_number}}" value="{{$check->order_number}}">
+                            <input type="number" class="form-control" id="order_number" name="order_number"
+                                   placeholder="{{$check->order_id}}" value="{{$check->order_id}}">
                         </div>
                         <div class="form-group">
                             <label for="customer_id">id مشتری</label>
-                            <input type="integer" class="form-control" id="customer_id" name="customer_id"
+                            <input type="number" class="form-control" id="customer_id" name="customer_id"
                                    placeholder="{{$check->customer_id}}" value="{{$check->customer_id}}">
 
                             <div class="form-group">
                                 <label for="seller_id">id فروشنده </label>
-                                <input type="integer" class="form-control" id="seller_id" name="seller_id"
+                                <input type="number" class="form-control" id="seller_id" name="seller_id"
                                        placeholder="{{$check->seller_id}}" value="{{$check->seller_id}}">
 
                             </div>
                             <div class="form-group">
                                 <label for="total_pay">مبلغ فاکتور</label>
-                                <input type="bigInteger" class="form-control" id="total_pay" name="total_pay"
+                                <input type="number" class="form-control" id="total_pay" name="total_pay"
                                        placeholder="{{$check->total_pay}}" value="{{$check->total_pay}}">
                             </div>
                         </div>
@@ -79,9 +79,9 @@
 
     <!-- /.row (main row) -->
 </div><!-- /.container-fluid -->
-</section>
+
 <!-- /.content -->
-</div>
+
 <!-- /.content-wrapper -->
 
 @include('.footer.main_footer')
@@ -91,7 +91,7 @@
     <!-- Control sidebar content goes here -->
 </aside>
 <!-- /.control-sidebar -->
-</div>
+
 <!-- ./wrapper -->
 @include('.scripts')
 </body>
