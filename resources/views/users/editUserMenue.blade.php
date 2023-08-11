@@ -73,7 +73,7 @@
                             <select class="form-control" id="gender" name="gender">
                                 <option value="male" @if($user->gender == "male") selected @endif>مرد</option>
                                 <option value="female" @if($user->gender == "female") selected @endif>زن</option>
-                                <option value="other"@if($user->gender == "other") selected @endif>سایر</option>
+                                <option value="other" @if($user->gender == "other") selected @endif>سایر</option>
                             </select>
                         </div>
 
@@ -101,19 +101,19 @@
                         <div class="form-group">
                             <label for="interests">علایق</label>
                             <textarea class="form-control" id="interests" name="interests"
-                                      placeholder="{{$user->interests}}" value="{{$user->interests}}"></textarea>
+                                      placeholder="{{$user->interests}}"></textarea>
                         </div>
 
                         <div class="form-group">
                             <label for="hobbies">سرگرمی‌ها</label>
                             <textarea class="form-control" id="hobbies" name="hobbies"
-                                      placeholder="{{$user->hobbies}}" value="{{$user->hobbies}}"></textarea>
+                                      placeholder="{{$user->hobbies}}"></textarea>
                         </div>
 
                         <div class="form-group">
                             <label for="bio">درباره‌ی خود</label>
                             <textarea class="form-control" id="bio" name="bio"
-                                      placeholder="{{$user->bio}}" value="{{$user->bio}}"></textarea>
+                                      placeholder="{{$user->bio}}"></textarea>
                         </div>
 
                         <div class="form-group">
@@ -130,10 +130,12 @@
 
                         <div class="form-group">
                             <label for="role">سطح دسترسی</label>
-                            <select class="form-control" id="role" name="role">
-                                <option value="1" @if($user->role == 1) selected @endif>مشتری</option>
-                                <option value="2" @if($user->role == 2) selected @endif>فروشنده</option>
-                                <option value="3" @if($user->role == 3) selected @endif>ادمین</option>
+                            <select class="form-control" id="role" name="role_id">
+                                <option value="1" @if($user->role->role_name == 'customer') selected @endif>مشتری
+                                </option>
+                                <option value="2" @if($user->role->role_name == 'seller') selected @endif>فروشنده
+                                </option>
+                                <option value="3" @if($user->role->role_name == 'admin') selected @endif>ادمین</option>
                             </select>
                         </div>
                     </div>
