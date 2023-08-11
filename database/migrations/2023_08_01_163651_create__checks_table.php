@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('checks', function (Blueprint $table) {
             $table->id();
-            $table->integer('order_number');
+            $table->integer('order_id');
             $table->integer('customer_id');
             $table->integer('seller_id');
             $table->bigInteger('total_pay');

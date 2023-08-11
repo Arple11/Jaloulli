@@ -4,13 +4,12 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Builder;
-use phpDocumentor\Reflection\Types\Integer;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\product_image;
+use App\Models\ProductImage;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 
 /**
@@ -40,6 +39,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static Builder|Product whereProductName($value)
  * @method static Builder|Product whereTags($value)
  * @method static Builder|Product whereUpdatedAt($value)
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @method static Builder|Product onlyTrashed()
+ * @method static Builder|Product whereDeletedAt($value)
+ * @method static Builder|Product withTrashed()
+ * @method static Builder|Product withoutTrashed()
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Order> $orders
+ * @property-read int|null $orders_count
  * @mixin \Eloquent
  */
 class Product extends Model
@@ -69,7 +75,7 @@ class Product extends Model
         $product = Product::create($request->all());
         #inserting [ product id, image url ] to product_images table
         foreach ($imageUrls as $imageUrl) {
-            product_image::create([
+            ProductImage::create([
                 'product_id' => $product->id,
                 'image_url' => $imageUrl,
             ]);
@@ -77,7 +83,7 @@ class Product extends Model
         return Product::whereId($product->id);
     }
 
-    public static function getAllProductsWithImage()
+    public static function getAllProductsWithImage(): array
     {
         $oldTrashs = Product::onlyTrashed()
             ->where('deleted_at', '<=', Carbon::now()->subDays(90))
@@ -95,17 +101,16 @@ class Product extends Model
         #serching in product_images table for images related to each data set
         $imagesArr = [];
         foreach ($datas as $data) {
-            $images = product_image::whereProductId($data->id)
+            $images = ProductImage::whereProductId($data->id)
                 ->select('image_url')
                 ->get();
             $imagesArr["$data->id"] = $images;
         }
         #making an array for passing to view
-        $allData = [
+        return [
             'products' => $datas,
             'productsImages' => $imagesArr
         ];
-        return $allData;
     }
 
     public static function editSelect(int $id)
@@ -133,6 +138,11 @@ class Product extends Model
         ]);
         $product->save();
         return $product;
+    }
+
+    public function orders(): BelongsToMany
+    {
+        return $this->belongsToMany(Order::class);
     }
 }
 

@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->string('last_name', 30);
             $table->string('user_name', 30)->unique();
             $table->string('phone_number', 10);
-            $table->tinyInteger('role')->default(1)->unsigned();
+            $table->tinyInteger('role_id')->default(1)->unsigned();
             $table->smallInteger('age')->unsigned();
             $table->enum('gender', ['male', 'female', 'other'])->default('male');
             $table->enum('education', ['high_school', 'bachelor', 'master', 'doctorate'])->default('high_school');

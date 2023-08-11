@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @include('styleSheets.styleSheets')
     <link rel="stylesheet" href="{{asset('persenalCss/app.css')}}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="{{asset('js/bt5.js')}}"></script>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -33,47 +35,99 @@
         <section class="content">
             <!-- form start -->
             <div class="container-fluid">
-                <form role="form" method="post">
+                <form role="form" method="post" action="{{route('store_order')}}">
                     @csrf
+                    <div class="form-group">
+                        <label for="customer_id">customers</label>
+                        <select class="form-control" id="customer_id" name="customer_id">
+                            @foreach($customers as $customer)
+                                <option value="{{$customer->id}}">
+                                    name: {{$customer->last_name}},
+                                    Email: {{$customer->email}}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="seller_id">sellers</label>
+                        <select class="form-control" id="seller_id" name="seller_id">
+                            @foreach($sellers as $seller)
+                                <option value="{{$seller->id}}">
+                                    name: {{$seller->last_name}},
+                                    Email: {{$seller->email}}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="email">ایمیل</label>
-                            <input type="email" class="form-control" id="email" name="email"
-                                   placeholder="ایمیل را وارد کنید">
-                        </div>
-                        <div class="form-group">
-                            <label for="phoneNum">شماره تلفن</label>
-                            <input type="text" class="form-control" id="phoneNum" name="phoneNum"
-                                   placeholder="شماره تلفن">
-                        </div>
-                        <div class="form-group">
-                            <label for="productNum">کد محصول</label>
-                            <input type="number" class="form-control" id="productNum" name="productNum"
-                                   placeholder="کد محصول">
-                        </div>
-                        <div class="form-group">
-                            <label for="explanation">توضیحات</label>
-                            <textarea class="form-control" rows="4" id="explanation" name="explanation"
-                                      placeholder="لطفا توضیحات مربوطه را وارد کنید"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="order_file">ارسال فایل</label>
-                            <div class="input-group">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="order_file"
-                                           accept="image/*,.pdf,.doc"
-                                           multiple name="order_file">
-                                    <label class="custom-file-label" for="exampleInputFile">انتخاب
-                                        فایل</label>
-                                </div>
-                                <div class="input-group-append">
-                                    <span class="input-group-text" id="">Upload</span>
+                            <label for="product_id">products_available</label>
+                            <div class="accordion" id="productAccordion">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="productHeading">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#productCollapse" aria-expanded="true"
+                                                aria-controls="productCollapse">
+                                            Product Information
+                                        </button>
+                                    </h2>
+                                    <div id="productCollapse" class="accordion-collapse collapse show"
+                                         aria-labelledby="productHeading">
+                                        <div class="accordion-body">
+                                            <table class="table">
+                                                <thead>
+                                                <tr>
+                                                    <th>Product Name</th>
+                                                    <th>Product Price</th>
+                                                    <th>Amount Available</th>
+                                                    <th>Amount Requested</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach($products_available as $product)
+                                                    <tr>
+                                                        <td>{{$product->product_name}}</td>
+                                                        <td>{{$product->price}}</td>
+                                                        <td>{{$product->amount_available}}</td>
+                                                        <td>
+                                                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                                                                <button class="btn btn-link px-2" type="button"
+                                                                        onclick="changeProductQuantity(this, -1)">
+                                                                    <i class="fas fa-minus"></i>
+                                                                </button>
+                                                                <input min="0" name="{{$product->id}}" value="0"
+                                                                       type="number"
+                                                                       max="{{$product->amount_available}}"
+                                                                       class="form-control form-control-sm"
+                                                                       style="width: 70px;"/>
+                                                                <button class="btn btn-link px-2" type="button"
+                                                                        onclick="changeProductQuantity(this, 1)">
+                                                                    <i class="fas fa-plus"></i>
+                                                                </button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            <script>
+                                function changeProductQuantity(button, step) {
+                                    var input = button.parentNode.querySelector('input[type=number]');
+                                    input.stepUp(step);
+                                }
+                            </script>
+                        </div>
+                        <div class="form-group">
+                            <label for="explanations">explanations</label>
+                            <textarea class="form-control" id="explanations" name="explanations"
+                                      placeholder="explanations"></textarea>
                         </div>
                     </div>
                     <!-- /.card-body -->
-
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">ارسال</button>
                     </div>
@@ -86,9 +140,7 @@
 
     <!-- /.row (main row) -->
 </div><!-- /.container-fluid -->
-</section>
 <!-- /.content -->
-</div>
 <!-- /.content-wrapper -->
 
 @include('.footer.main_footer')
@@ -98,7 +150,7 @@
     <!-- Control sidebar content goes here -->
 </aside>
 <!-- /.control-sidebar -->
-</div>
+
 <!-- ./wrapper -->
 @include('.scripts')
 </body>
