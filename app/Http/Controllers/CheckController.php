@@ -8,7 +8,7 @@ class CheckController extends Controller
     {
 //dd($request);
         DB::table('checks')->insert([
-            'order_number' => $request->post('order_number'),
+            'order_id' => $request->post('order_number'),
             'customer_id' => $request->post('customer_id'),
             'seller_id' => $request->post('seller_id'),
             'total_pay' => $request->post('total_pay'),

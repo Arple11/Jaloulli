@@ -62,7 +62,7 @@
                                 <tbody>
                                 @foreach ($checks as $check)
                                     <tr>
-                                        <td>{{ $check->order_number }}</td>
+                                        <td>{{ $check->order_id }}</td>
                                         <td>{{ $check->customer_id}}</td>
                                         <td>{{ $check->seller_id }}</td>
                                         <td>{{ $check->total_pay }}</td>
