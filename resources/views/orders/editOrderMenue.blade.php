@@ -35,10 +35,17 @@
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="customer_id">customer_id</label>
-                            <input type="number" class="form-control" id="customer_id" name="customer_id"
-                                   value="{{$order->customer_id}}"
-                                   placeholder="customer_id">
+                            <label for="customer_id">customers</label>
+                            <select class="form-control" id="customer_id" name="customer_id">
+                                @foreach($customers as $customer)
+                                    <option value="{{$customer->id}}"
+                                            @if($customer->id == $order->customer->id) selected @endif>
+                                        Email: {{$customer->email}}
+                                        name: {{$customer->last_name}},
+                                        ID : {{$customer->id}},
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="seller_id">seller_id</label>
