@@ -55,14 +55,14 @@
                             <label for="order_total_price">order_total_price</label>
                             <input type="number" class="form-control" id="order_total_price" name="order_total_price"
                                    value="{{$order->order_total_price}}"
-                                   placeholder="seller_id">
+                                   placeholder="order_total_price">
                         </div>
                         <div class="form-group">
                             <label for="balance">balance</label>
                             <input type="number" class="form-control" id="balance" name="balance"
                                    readonly
                                    value="{{$order->balance}}"
-                                   placeholder="order_total_price">
+                                   placeholder="balance">
                         </div>
                         <div class="form-group">
                             <label for="explanations">explanations</label>
