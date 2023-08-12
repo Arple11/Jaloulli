@@ -30,11 +30,12 @@ class OrderController extends Controller
         $total = 0;
         foreach ($products as $product_id => $count) {
             if ($count > 0) {
-                $product = Product::find($product_id + 1);
+                $id = (int)substr($product_id,8);
+                $product = Product::find($id);
                 $total += ($product->price * $count);
                 OrderProduct::create([
                     'order_id' => $order->id,
-                    'product_id' => $product_id + 1,
+                    'product_id' => $id,
                     'count' => $count,
                 ]);
                 $product->amount_available -= $count;

@@ -95,7 +95,7 @@
                                                                         onclick="changeProductQuantity(this, -1)">
                                                                     <i class="fas fa-minus"></i>
                                                                 </button>
-                                                                <input min="0" name="{{$product->id}}" value="0"
+                                                                <input min="0" name="Product_{{$product->id}}" value="0"
                                                                        type="number"
                                                                        max="{{$product->amount_available}}"
                                                                        class="form-control form-control-sm"
