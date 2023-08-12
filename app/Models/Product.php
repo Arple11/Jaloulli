@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\ProductImage;
@@ -44,7 +45,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @method static Builder|Product whereDeletedAt($value)
  * @method static Builder|Product withTrashed()
  * @method static Builder|Product withoutTrashed()
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Order> $orders
+ * @property-read Collection<int, \App\Models\Order> $orders
  * @property-read int|null $orders_count
  * @mixin \Eloquent
  */
@@ -109,12 +110,12 @@ class Product extends Model
         ];
     }
 
-    public static function editSelect(int $id)
+    public static function editSelect(int $id): Model|Collection|Product|array|null
     {
         return Product::find($id);
     }
 
-    public static function saveEditedProduct(Request $request, int $id)
+    public static function saveEditedProduct(Request $request, int $id): Model|Collection|Product|array|null
     {
         $product = Product::find($id);
         $product->fill([
