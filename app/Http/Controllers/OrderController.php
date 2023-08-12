@@ -68,7 +68,15 @@ class OrderController extends Controller
 
     public function editOrder($id): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('orders.editOrderMenue', ['order' => Order::find($id)]);
+        $data = [
+            'sellers' => $this->sellers(),
+            'customers' => $this->customers(),
+            'products' => Product::all(),
+            'order' => Order::with('seller:id','customer:id','products:id')->find($id),
+        ];
+//        $tmp = $data['order'];
+//        dd(json_encode($tmp));
+        return view('orders.editOrderMenue', $data);
     }
 
     public function saveEditedOrder(Request $request, $id): RedirectResponse
