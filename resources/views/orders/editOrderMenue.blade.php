@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @include('styleSheets.styleSheets')
     <link rel="stylesheet" href="{{asset('persenalCss/app.css')}}">
+    <link href="{{asset('bt5.css')}}" rel="stylesheet">
+    <script src="{{asset('js/bt5.js')}}"></script>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -40,7 +42,7 @@
                                 @foreach($customers as $customer)
                                     <option value="{{$customer->id}}"
                                             @if($customer->id == $order->customer->id) selected @endif>
-                                        Email: {{$customer->email}}
+                                        Email: {{$customer->email}},
                                         name: {{$customer->last_name}},
                                         ID : {{$customer->id}},
                                     </option>

@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="{{asset('normalize/normalize.min.css')}}">
 <link rel="stylesheet" href="{{asset('persenalCss/checkbox_radio/style.css')}}">
 <!-- Font Awesome -->
 <link rel="stylesheet" href="{{asset('plugins/font-awesome/css/all.css')}}">
@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="{{asset('plugins/font-awesome/css/fontawesome.min.css')}}">
 
 <!-- Ionicons -->
-<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="{{asset('ionicons/ionicons.min.css')}}">
 <!-- Theme style -->
 <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
 <!-- iCheck -->
@@ -24,7 +24,7 @@
 <!-- bootstrap wysihtml5 - text editor -->
 <link rel="stylesheet" href="{{asset('plugins/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
 <!-- Google Font: Source Sans Pro -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700">
+<link rel="stylesheet" href="{{asset('googleFonts.css')}}">
 <!-- bootstrap rtl -->
 <link rel="stylesheet" href="{{asset('dist/css/bootstrap-rtl.min.css')}}">
 <!-- template rtl version -->
