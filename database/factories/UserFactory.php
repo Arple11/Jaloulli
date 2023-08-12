@@ -31,7 +31,7 @@ class UserFactory extends Factory
             'interests' => fake()->realText(10),
             'hobbies' => fake()->realTextBetween(50, 100),
             'bio' => fake()->realTextBetween(50, 100),
-            'postal_code' => fake()->numberBetween(1000000000, 9671967117),
+            'postal_code' => fake()->numberBetween(1000000000, 9999999999),
             'address' => fake()->address(),
             'password' => fake()->password(),
         ];
