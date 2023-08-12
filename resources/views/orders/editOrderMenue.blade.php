@@ -48,10 +48,17 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="seller_id">seller_id</label>
-                            <input type="number" class="form-control" id="seller_id" name="seller_id"
-                                   value="{{$order->seller_id}}"
-                                   placeholder="seller_id">
+                            <label for="seller_id">sellers</label>
+                            <select class="form-control" id="seller_id" name="seller_id">
+                                @foreach($sellers as $seller)
+                                    <option value="{{$seller->id}}"
+                                            @if($seller->id == $order->seller->id) selected @endif>
+                                        Email: {{$seller->email}}
+                                        name: {{$seller->last_name}},
+                                        ID : {{$seller->id}},
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="productNum">کد محصول</label>
