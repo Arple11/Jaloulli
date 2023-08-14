@@ -37,8 +37,8 @@
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="order_number">شماره سفارش</label>
-                            <input type="integer" class="form-control" id="order_number" name="order_number"
+                            <label for="order_id">شماره سفارش</label>
+                            <input type="integer" class="form-control" id="order_id" name="order_id"
                                    placeholder="شماره سفارش را وارد کنید">
                         </div>
                         <div class="form-group">

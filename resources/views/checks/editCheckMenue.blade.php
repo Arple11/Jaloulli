@@ -33,13 +33,10 @@
         <section class="content">
             <!-- form start -->
 {{--            @dd($check)--}}
-            <?php
-            $temp = $check->checkid;
-//            dd($temp)
-            ?>
+
 
             <div class="container-fluid">
-                <form role="form" method="post" action="{{route('store_edited_check',['id' => $temp]) }}">
+                <form role="form" method="post" action="{{route('store_edited_check',['id' => $check->id]) }}">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">

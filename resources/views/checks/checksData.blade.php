@@ -9,16 +9,7 @@
 
     @include('.styleSheets.dataStyle')
     @include('.styleSheets.styleSheets')
-    <?php
-    $users = [
-        '123' => [
-            'checkNum' => 456,
-            'last_name' => 'Akhtari',
-            'phone_number' => '09121236610',
-            'total_check' => 884455,
-            'file' => null,
-        ]
-    ] ?>
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
