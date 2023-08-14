@@ -2,66 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Opportunity;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\RedirectResponse;
 
 class OpportunityController extends Controller
 {
-    public function store(Request $request): string
+    public function store(Request $request)
     {
-        if (isset($request->is_urgent)) {
-            $temp = $request->is_urgent;
-        } else {
-            $temp = 'off';
-        }
-
-        DB::table('opportunities')->insert([
-            'customer_id' => $request->post('customer_id'),
-            'product_id' => $request->post('product_id'),
-            'price' => $request->post('price'),
-            'quantity' => $request->post('quantity'),
-            'opportunity_explanation' => $request->post('opportunity_explanation'),
-            'opportunity_status' => $request->post('opportunity_status'),
-            'is_urgent' => $temp,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        Opportunity::create($request->all());
         return redirect()->route('opportunities_data');
     }
     public function get_all_opportunities()
     {
-        $data = DB::table('opportunities')
-            ->select('customer_id','price','opportunity_status','opportunity_explanation','is_urgent','product_id','id','quantity')
-            ->get();
-        return (view('opportunitys.opportunitysData')->with(['opportunities'=>$data]));
+        return view('opportunitys.opportunitysData',['opportunities'=>Opportunity::GetAllOpportunities()]);
     }
     public function edit_opportunities($id)
     {
-   $data = DB::table('opportunities')
-        ->where('id',$id)
-        ->first();
-        return (view('opportunitys.EditOpportunity')->with(['opportunity'=>$data]));
+        return view('opportunitys.EditOpportunity',['opportunity'=>Opportunity::find($id)]);
     }
-    public function store_edit_opportunities(Request $request ,$id)
+    public function store_edit_opportunities(Request $request , $id)
     {
-        DB::table('opportunities')
-            ->where('id', $id)
-            ->update([
-                'quantity' => $request->post('quantity'),
-                'price' => $request->post('price'),
-                'opportunity_explanation' => $request->post('opportunity_explanation'),
-                'opportunity_status' => $request->post('opportunity_status'),
-                'updated_at' => now(),
-                ]);
+        Opportunity::storeEditedOpportunities($request , $id);
         return redirect()->route('opportunities_data');
     }
-    public function delete_opportunities(Request $request , $id)
+    public function delete_opportunities($id)
     {
-        DB::table('opportunities')
-            ->where('id', $id)
-            ->delete();
+        Opportunity::destroy($id);
         return redirect()->route('opportunities_data');
     }
 }

@@ -60,7 +60,7 @@
                         <div class="form-group">
                             <label for="opportunity_explanation">توضیحات</label>
                             <textarea class="form-control" rows="4" id="opportunity_explanation" name="opportunity_explanation"
-                                      value={{$opportunity->opportunity_explanation}}></textarea>
+                           >{{$opportunity->opportunity_explanation}}</textarea>
                         </div>
 
                         <div class="form-group">

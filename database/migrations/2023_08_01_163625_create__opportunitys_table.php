@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->bigInteger('product_id')->unsigned()->nullable(FALSE);
             $table->bigInteger('price')->nullable(FALSE);
             $table->bigInteger('quantity')->nullable(FAlSE);
-            $table->longText('opportunity_explanation');
+            $table->longText('opportunity_explanation')->nullable();
             $table->enum('opportunity_status', ['follow_up', 'ongoing', 'finished']);
             $table->enum('is_urgent' , ['on' , 'off'])->default('off');
             $table->timestamps();
