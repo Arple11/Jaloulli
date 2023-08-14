@@ -61,7 +61,9 @@ class CheckController extends Controller
 
     public function store_edited_check(Request $request, $id)
     {
-        Check::Controllers($request,$id);
+
+        Check::find($id)
+            ->update($request->toArray());
 
 //        dd($request);
 //        $check = DB::table('checks')->where('id', $id)

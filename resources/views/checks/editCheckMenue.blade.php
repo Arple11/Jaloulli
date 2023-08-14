@@ -41,7 +41,7 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="order_number">شماره سفارش</label>
-                            <input type="number" class="form-control" id="order_number" name="order_number"
+                            <input type="number" class="form-control" id="order_number" name="order_id"
                                    placeholder="{{$check->order_id}}" value="{{$check->order_id}}">
                         </div>
                         <div class="form-group">
