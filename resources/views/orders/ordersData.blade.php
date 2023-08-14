@@ -42,6 +42,7 @@
                                 <table id="Data" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
+                                        <th>ID</th>
                                         <th>مشتری</th>
                                         <th>فروشنده</th>
                                         <th>توضیحات</th>
@@ -56,6 +57,7 @@
                                     @php($temp = 0)
                                     @foreach ($orders as $order)
                                         <tr>
+                                            <td>{{$order->id}}</td>
                                             <td>
                                                 <a class="btn" data-bs-toggle="collapse"
                                                    href="#collapseC{{$order->customer->id}}{{$temp}}">
