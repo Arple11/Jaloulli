@@ -30,7 +30,7 @@ class OrderController extends Controller
         $total = 0;
         foreach ($products as $product_id => $count) {
             if ($count > 0) {
-                $id = (int)substr($product_id,8);
+                $id = (int)substr($product_id, 8);
                 $product = Product::find($id);
                 $total += ($product->price * $count);
                 OrderProduct::create([
@@ -40,6 +40,7 @@ class OrderController extends Controller
                 ]);
                 $product->amount_available -= $count;
                 $product->amount_sold += $count;
+                $product->save();
             }
         }
         $order->order_total_price = $total;
@@ -73,7 +74,7 @@ class OrderController extends Controller
             'sellers' => $this->sellers(),
             'customers' => $this->customers(),
             'products' => Product::all(),
-            'order' => Order::with('seller:id','customer:id','products:id')->find($id),
+            'order' => Order::with('seller:id', 'customer:id', 'products:id')->find($id),
         ];
 //        $tmp = $data['order'];
 //        dd(json_encode($tmp));
@@ -82,7 +83,39 @@ class OrderController extends Controller
 
     public function saveEditedOrder(Request $request, $id): RedirectResponse
     {
+        $req = (object)array_slice($request->all(), 1); //removing token
+        $products = array_slice($request->all(), 3);
+        array_pop($products);
         $order = Order::find($id);
+        $order->customer_id = $req->customer_id;
+        $order->seller_id = $req->seller_id;
+        $order->explanations = $req->explanations;
+        $total = 0;
+        foreach ($products as $product_id => $count) {
+            $pid = (int)substr($product_id, 8);
+            $productCont = OrderProduct::whereProductId($pid)
+                ->whereOrderId($order->id)->select('count','id')
+                ->first();
+            $product = Product::find($pid);
+            if ($productCont->count != $count) {
+                $product->amount_available += $productCont->count;
+                $product->amount_sold -= $productCont->count;
+//                dd($productCont);
+                $productCont->delete();
+                if ($count > 0) {
+                    $total += ($product->price * $count);
+                    OrderProduct::create([
+                        'order_id' => $order->id,
+                        'product_id' => $pid,
+                        'count' => $count,
+                    ]);
+                    $product->amount_available -= $count;
+                    $product->amount_sold += $count;
+                    $product->save();
+                }
+            }
+        }
+        $order->order_total_price = $total;
         $order->update($request->all());
         $order->balance = -1 * $request->order_total_price;
         $order->save();

@@ -32,7 +32,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class OrderProduct extends Pivot
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $fillable = [
         'order_id',

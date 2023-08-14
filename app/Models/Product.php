@@ -91,7 +91,7 @@ class Product extends Model
             ->get();
         foreach ($oldTrashs as $oldTrash)
             $oldTrash->forceDelete();
-        #storing useful data in $datas (making sure the data is enable)
+        #storing useful data in $datas
         $datas = Product::with('orders:id')
             ->select(['id','product_name','explanation','price','amount_available'])
             ->get();

@@ -62,10 +62,78 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="productNum">کد محصول</label>
-                            <input type="number" class="form-control" id="productNum" name="productNum"
-                                   placeholder="کد محصول">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="product_id">products_available</label>
+                                <div class="accordion" id="productAccordion">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="productHeading">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                    data-bs-target="#productCollapse" aria-expanded="true"
+                                                    aria-controls="productCollapse">
+                                                Product Information
+                                            </button>
+                                        </h2>
+                                        <div id="productCollapse" class="accordion-collapse collapse show"
+                                             aria-labelledby="productHeading">
+                                            <div class="accordion-body">
+                                                <table class="table">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>Product Name</th>
+                                                        <th>Product Price</th>
+                                                        <th>Amount Available</th>
+                                                        <th>Amount Requested</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {{--@php
+                                                        $orderProducts = (array)$order->products
+                                                    @endphp--}}
+                                                    @foreach($products as $product)
+                                                        <tr>
+                                                            <td>{{$product->product_name}}</td>
+                                                            <td>{{$product->price}}</td>
+                                                            <td>{{$product->amount_available}}</td>
+                                                            <td>
+                                                                <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                                                                    <button class="btn btn-link px-2" type="button"
+                                                                            onclick="changeProductQuantity(this, -1)">
+                                                                        <i class="fas fa-minus"></i>
+                                                                    </button>
+                                                                    <input min="0" name="Product_{{$product->id}}"
+                                                                           placeholder="0"
+                                                                           @foreach($order->products as $orderProduct)
+                                                                               @if($orderProduct->id == $product->id)
+                                                                                   value="{{$orderProduct->pivot->count}}"
+                                                                           @break
+                                                                           @endif
+                                                                           @endforeach
+                                                                           type="number"
+                                                                           max="{{$product->amount_available}}"
+                                                                           class="form-control form-control-sm"
+                                                                           style="width: 70px;"/>
+                                                                    <button class="btn btn-link px-2" type="button"
+                                                                            onclick="changeProductQuantity(this, 1)">
+                                                                        <i class="fas fa-plus"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <script>
+                                    function changeProductQuantity(button, step) {
+                                        var input = button.parentNode.querySelector('input[type=number]');
+                                        input.stepUp(step);
+                                    }
+                                </script>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="order_total_price">order_total_price</label>
