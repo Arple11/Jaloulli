@@ -36,7 +36,7 @@
                         <!-- /.card-header -->
                         <div class="card-body">
                             <div id="accordionHead">
-                                <form  role="form" method="get" action="#">
+                                <form role="form" method="get" action="{{ route('filterUsers') }}">
                                     <div class="card">
                                         <div class="card-header bg-light">
                                             <a class="btn btn-secondary" data-bs-toggle="collapse" href="#fillters">
@@ -49,21 +49,23 @@
                                                     <div class="form-group">
                                                         <div class="row">
                                                             <div class="col">
-                                                                <label for="FilterEmail">ایمیل</label>
-                                                                <input type="email" class="form-control"
-                                                                       id="FilterEmail"
-                                                                       name="FilterEmail"
+                                                                <label for="filterEmail">ایمیل</label>
+                                                                <input type="text" class="form-control"
+                                                                       id="filterEmail"
+                                                                       name="filterEmail"
                                                                        placeholder="email">
                                                             </div>
                                                             <div class="col">
-                                                                <label for="first_name">نام</label>
-                                                                <input type="text" class="form-control" id="first_name"
-                                                                       name="first_name" placeholder="نام">
+                                                                <label for="filterFirstName">نام</label>
+                                                                <input type="text" class="form-control"
+                                                                       id="filterFirstName"
+                                                                       name="filterFirstName" placeholder="نام">
                                                             </div>
                                                             <div class="col">
-                                                                <label for="last_name">نام خانوادگی</label>
-                                                                <input type="text" class="form-control" id="last_name"
-                                                                       name="last_name"
+                                                                <label for="filterLastName">نام خانوادگی</label>
+                                                                <input type="text" class="form-control"
+                                                                       id="filterLastName"
+                                                                       name="filterLastName"
                                                                        placeholder="نام خانوادگی">
                                                             </div>
                                                         </div>
@@ -76,32 +78,34 @@
                                                     <div class="form-group">
                                                         <div class="row">
                                                             <div class="col">
-                                                                <label for="user_name">نام کاربری</label>
-                                                                <input type="text" class="form-control" id="user_name"
-                                                                       name="user_name"
+                                                                <label for="filterUserName">نام کاربری</label>
+                                                                <input type="text" class="form-control"
+                                                                       id="filterUserName"
+                                                                       name="filterUserName"
                                                                        placeholder="نام کاربری">
                                                             </div>
                                                             <div class="col">
-                                                                <label for="phone_number">شماره همراه</label>
+                                                                <label for="filterPhoneNumber">شماره همراه</label>
                                                                 <input type="number" class="form-control"
-                                                                       id="phone_number"
-                                                                       name="phone_number"
+                                                                       id="filterPhoneNumber"
+                                                                       name="filterPhoneNumber"
                                                                        placeholder="9120000000">
                                                             </div>
                                                             <div class="col">
                                                                 <div class="row">
 
                                                                     <div class="col">
-                                                                        <label for="age">سن</label>
-                                                                        <label for="ageMin" id="age">از</label>
+                                                                        <label for="filterAge">سن</label>
+                                                                        <label for="filterAgeMin"
+                                                                               id="filterAge">از</label>
                                                                         <input type="number" class="form-control"
-                                                                               id="ageMin" name="ageMin"
+                                                                               id="filterAgeMin" name="filterAgeMin"
                                                                                placeholder="از">
                                                                     </div>
                                                                     <div class="col">
-                                                                        <label for="ageMax">تا</label>
+                                                                        <label for="filterAgeMax">تا</label>
                                                                         <input type="number" class="form-control"
-                                                                               id="ageMax" name="ageMax"
+                                                                               id="filterAgeMax" name="filterAgeMax"
                                                                                placeholder="تا">
                                                                     </div>
                                                                 </div>
@@ -111,34 +115,38 @@
                                                     <div class="form-group">
                                                         <div class="row">
                                                             <div class="col">
-                                                                <label for="gender">جنسیت</label>
-                                                                <select class="form-control" id="gender" name="gender">
-                                                                    <option value="male" selected>مرد</option>
+                                                                <label for="filterGender">جنسیت</label>
+                                                                <select class="form-control" id="filterGender"
+                                                                        name="filterGender">
+                                                                    <option value="male">مرد</option>
                                                                     <option value="female">زن</option>
                                                                     <option value="other">سایر</option>
+                                                                    <option value="all" selected>همه</option>
                                                                 </select>
                                                             </div>
                                                             <div class="col">
-                                                                <label for="education">تحصیلات</label>
-                                                                <select class="form-control" id="education"
-                                                                        name="education">
-                                                                    <option value="high_school" selected>دیپلم</option>
+                                                                <label for="filterEducation">تحصیلات</label>
+                                                                <select class="form-control" id="filterEducation"
+                                                                        name="filterEducation">
+                                                                    <option value="high_school">دیپلم</option>
                                                                     <option value="bachelor">کارشناسی</option>
                                                                     <option value="master">کارشناسی ارشد</option>
                                                                     <option value="doctorate">دکتری</option>
+                                                                    <option value="all" selected>همه</option>
                                                                 </select>
                                                             </div>
                                                             <div class="col">
-                                                                <label for="postal_code">کد پستی</label>
+                                                                <label for="filterPostalCode">کد پستی</label>
                                                                 <input type="number" class="form-control"
-                                                                       id="postal_code"
-                                                                       name="postal_code"
+                                                                       id="filterPostalCode"
+                                                                       name="filterPostalCode"
                                                                        placeholder="کد پستی را وارد کنید">
                                                             </div>
                                                             <div class="col">
-                                                                <label for="occupation">شغل</label>
-                                                                <input type="text" class="form-control" id="occupation"
-                                                                       name="occupation"
+                                                                <label for="filterOccupation">شغل</label>
+                                                                <input type="text" class="form-control"
+                                                                       id="filterOccupation"
+                                                                       name="filterOccupation"
                                                                        placeholder="شغل را وارد کنید">
                                                             </div>
                                                         </div>
@@ -149,37 +157,40 @@
                                                     <div class="form-group">
                                                         <div class="row">
                                                             <div class="col">
-                                                                <label for="orderStatus">سفارش</label>
-                                                                <select class="form-control" id="orderStatus"
-                                                                        name="orderStatus">
+                                                                <label for="filterOrderStatus">سفارش</label>
+                                                                <select class="form-control" id="filterOrderStatus"
+                                                                        name="filterOrderStatus">
                                                                     <option value="true">دارد</option>
-                                                                    <option value="false">ندارم</option>
+                                                                    <option value="false">ندارد</option>
                                                                     <option value="all" selected>همه</option>
                                                                 </select>
                                                             </div>
                                                             <div class="col">
-                                                                <label for="factorStatus">فاکتور</label>
-                                                                <select class="form-control" id="factorStatus"
-                                                                        name="factorStatus">
+                                                                <label for="filterFactorStatus">فاکتور</label>
+                                                                <select class="form-control" id="filterFactorStatus"
+                                                                        name="filterFactorStatus">
                                                                     <option value="true">دارد</option>
-                                                                    <option value="false">ندارم</option>
+                                                                    <option value="false">ندارد</option>
                                                                     <option value="all" selected>همه</option>
                                                                 </select>
                                                             </div>
                                                             <div class="col">
                                                                 <div class="row">
                                                                     <div class="col">
-                                                                        <label for="orderCount">تعداد سفارشات</label>
-                                                                        <label for="orderCountMin"
-                                                                               id="orderCount">از</label>
+                                                                        <label for="filterOrderCount">تعداد
+                                                                            سفارشات</label>
+                                                                        <label for="filterOrderCountMin"
+                                                                               id="filterOrderCount">از</label>
                                                                         <input type="number" class="form-control"
-                                                                               id="orderCountMin" name="orderCountMin"
+                                                                               id="filterOrderCountMin"
+                                                                               name="filterOrderCountMin"
                                                                                placeholder="از">
                                                                     </div>
                                                                     <div class="col">
-                                                                        <label for="orderCountMax">تا</label>
+                                                                        <label for="filterOrderCountMax">تا</label>
                                                                         <input type="number" class="form-control"
-                                                                               id="orderCountMax" name="orderCountMax"
+                                                                               id="filterOrderCountMax"
+                                                                               name="filterOrderCountMax"
                                                                                placeholder="تا">
                                                                     </div>
                                                                 </div>
@@ -188,25 +199,48 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="row">
-                                                            <div class="col">
+                                                            <div class="col-6">
                                                                 <div class="row">
                                                                     <div class="col">
-                                                                        <label for="orderTotalPrice">قیمت کل
+                                                                        <label for="filterOrderTotalPrice">قیمت کل
                                                                             سفارشات</label>
-                                                                        <label for="orderTotalPriceMin"
-                                                                               id="orderCount">از</label>
+                                                                        <label for="filterOrderTotalPriceMin"
+                                                                               id="filterOrderTotalPrice">از</label>
                                                                         <input type="number" class="form-control"
-                                                                               id="orderTotalPriceMin"
-                                                                               name="orderTotalPriceMin"
+                                                                               id="filterOrderTotalPriceMin"
+                                                                               name="filterOrderTotalPriceMin"
                                                                                placeholder="از">
                                                                     </div>
                                                                     <div class="col">
-                                                                        <label for="orderTotalPriceMax">تا</label>
+                                                                        <label for="filterOrderTotalPriceMax">تا</label>
                                                                         <input type="number" class="form-control"
-                                                                               id="orderTotalPriceMax"
-                                                                               name="orderTotalPriceMax"
+                                                                               id="filterOrderTotalPriceMax"
+                                                                               name="filterOrderTotalPriceMax"
                                                                                placeholder="تا">
                                                                     </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label for="filterRole">سطح دسترسی</label>
+                                                                    <select class="form-control" id="filterRole"
+                                                                            name="filterRole">
+                                                                        <option value="1" @if(isset($_GET['filterRole']))
+                                                                            @if($_GET['filterRole'] == 1) selected @endif
+                                                                                @endif>مشتری</option>
+                                                                        <option value="2" @if(isset($_GET['filterRole']))
+                                                                            @if($_GET['filterRole'] == 2) selected @endif
+                                                                                @endif>فروشنده</option>
+                                                                        <option value="3" @if(isset($_GET['filterRole']))
+                                                                            @if($_GET['filterRole'] == 3) selected @endif
+                                                                                @endif>
+                                                                            ادمین
+                                                                        </option>
+                                                                        <option value="all"
+                                                                                @if(!isset($_GET['filterRole'])) selected @endif>
+                                                                            همه
+                                                                        </option>
+                                                                    </select>
                                                                 </div>
                                                             </div>
                                                         </div>
