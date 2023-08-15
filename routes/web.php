@@ -34,7 +34,7 @@ Route::get('/workplace', function () {
 });
 
 Route::prefix('Users')->group(function () {
-    Route::get('/all_data',[UserController::class,'filterUsers'])->name('filterUser');
+    Route::get('/all_data/filtered',[UserController::class,'filterUsers'])->name('filterUsers');
     Route::view('/add_User', 'users.addUser')->name('addUser');
     Route::post('/store_user', [UserController::class, 'store'])->name('store_user');
     Route::get('/all_data', [UserController::class, 'get_all_users'])->name('Users_data');

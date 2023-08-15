@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Database\Factories\UserFactory;
@@ -74,6 +75,10 @@ use Illuminate\Notifications\DatabaseNotificationCollection;
  * @method static Builder|User withTrashed()
  * @method static Builder|User withoutTrashed()
  * @property-read \App\Models\Role|null $role
+ * @property-read Collection<int, \App\Models\Order> $ordersBought
+ * @property-read int|null $orders_bought_count
+ * @property-read Collection<int, \App\Models\Order> $ordersSold
+ * @property-read int|null $orders_sold_count
  * @mixin \Eloquent
  */
 class User extends Authenticatable
@@ -142,6 +147,14 @@ class User extends Authenticatable
         return User::find($id)->update($data);
     }
 
+    public function ordersBought(): HasMany
+    {
+        return $this->hasMany(Order::class,'customer_id');
+    }
+    public function ordersSold(): HasMany
+    {
+        return $this->hasMany(Order::class,'seller_id');
+    }
     public function role(): BelongsTo
     {
         return $this->belongsTo(Role::class);
