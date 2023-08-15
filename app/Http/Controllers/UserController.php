@@ -26,7 +26,7 @@ class UserController extends Controller
 
     public function store_edited_user(Request $request, $id)
     {
-        User::storeEditedUser($request,$id);
+        User::storeEditedUser($request, $id);
         return redirect()->route('Users_data');
     }
 
@@ -34,5 +34,10 @@ class UserController extends Controller
     {
         User::destroy($id);
         return redirect()->route('Users_data');
+    }
+
+    public function filterUsers(Request $request)
+    {
+
     }
 }

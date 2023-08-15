@@ -33,11 +33,196 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        {{--<div class="card-header">
-                            <h3 class="card-title"></h3>
-                        </div>--}}
                         <!-- /.card-header -->
                         <div class="card-body">
+                            <div id="accordionHead">
+                                <form  role="form" method="get" action="#">
+                                    <div class="card">
+                                        <div class="card-header bg-light">
+                                            <a class="btn btn-secondary" data-bs-toggle="collapse" href="#fillters">
+                                                فیلتر ها
+                                            </a>
+                                        </div>
+                                        <div class="collapse" id="fillters" data-bs-parent="#accordionHead">
+                                            <div class="card-body">
+                                                <div class="form-control">
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <label for="FilterEmail">ایمیل</label>
+                                                                <input type="email" class="form-control"
+                                                                       id="FilterEmail"
+                                                                       name="FilterEmail"
+                                                                       placeholder="email">
+                                                            </div>
+                                                            <div class="col">
+                                                                <label for="first_name">نام</label>
+                                                                <input type="text" class="form-control" id="first_name"
+                                                                       name="first_name" placeholder="نام">
+                                                            </div>
+                                                            <div class="col">
+                                                                <label for="last_name">نام خانوادگی</label>
+                                                                <input type="text" class="form-control" id="last_name"
+                                                                       name="last_name"
+                                                                       placeholder="نام خانوادگی">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <label for="user_name">نام کاربری</label>
+                                                                <input type="text" class="form-control" id="user_name"
+                                                                       name="user_name"
+                                                                       placeholder="نام کاربری">
+                                                            </div>
+                                                            <div class="col">
+                                                                <label for="phone_number">شماره همراه</label>
+                                                                <input type="number" class="form-control"
+                                                                       id="phone_number"
+                                                                       name="phone_number"
+                                                                       placeholder="9120000000">
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="row">
+
+                                                                    <div class="col">
+                                                                        <label for="age">سن</label>
+                                                                        <label for="ageMin" id="age">از</label>
+                                                                        <input type="number" class="form-control"
+                                                                               id="ageMin" name="ageMin"
+                                                                               placeholder="از">
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <label for="ageMax">تا</label>
+                                                                        <input type="number" class="form-control"
+                                                                               id="ageMax" name="ageMax"
+                                                                               placeholder="تا">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <label for="gender">جنسیت</label>
+                                                                <select class="form-control" id="gender" name="gender">
+                                                                    <option value="male" selected>مرد</option>
+                                                                    <option value="female">زن</option>
+                                                                    <option value="other">سایر</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col">
+                                                                <label for="education">تحصیلات</label>
+                                                                <select class="form-control" id="education"
+                                                                        name="education">
+                                                                    <option value="high_school" selected>دیپلم</option>
+                                                                    <option value="bachelor">کارشناسی</option>
+                                                                    <option value="master">کارشناسی ارشد</option>
+                                                                    <option value="doctorate">دکتری</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col">
+                                                                <label for="postal_code">کد پستی</label>
+                                                                <input type="number" class="form-control"
+                                                                       id="postal_code"
+                                                                       name="postal_code"
+                                                                       placeholder="کد پستی را وارد کنید">
+                                                            </div>
+                                                            <div class="col">
+                                                                <label for="occupation">شغل</label>
+                                                                <input type="text" class="form-control" id="occupation"
+                                                                       name="occupation"
+                                                                       placeholder="شغل را وارد کنید">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-control">
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <label for="orderStatus">سفارش</label>
+                                                                <select class="form-control" id="orderStatus"
+                                                                        name="orderStatus">
+                                                                    <option value="true">دارد</option>
+                                                                    <option value="false">ندارم</option>
+                                                                    <option value="all" selected>همه</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col">
+                                                                <label for="factorStatus">فاکتور</label>
+                                                                <select class="form-control" id="factorStatus"
+                                                                        name="factorStatus">
+                                                                    <option value="true">دارد</option>
+                                                                    <option value="false">ندارم</option>
+                                                                    <option value="all" selected>همه</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <label for="orderCount">تعداد سفارشات</label>
+                                                                        <label for="orderCountMin"
+                                                                               id="orderCount">از</label>
+                                                                        <input type="number" class="form-control"
+                                                                               id="orderCountMin" name="orderCountMin"
+                                                                               placeholder="از">
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <label for="orderCountMax">تا</label>
+                                                                        <input type="number" class="form-control"
+                                                                               id="orderCountMax" name="orderCountMax"
+                                                                               placeholder="تا">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <label for="orderTotalPrice">قیمت کل
+                                                                            سفارشات</label>
+                                                                        <label for="orderTotalPriceMin"
+                                                                               id="orderCount">از</label>
+                                                                        <input type="number" class="form-control"
+                                                                               id="orderTotalPriceMin"
+                                                                               name="orderTotalPriceMin"
+                                                                               placeholder="از">
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <label for="orderTotalPriceMax">تا</label>
+                                                                        <input type="number" class="form-control"
+                                                                               id="orderTotalPriceMax"
+                                                                               name="orderTotalPriceMax"
+                                                                               placeholder="تا">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer">
+                                                <button type="submit" class="btn btn-info">فیلتر</button>
+                                                <a href="{{ route('Users_data') }}">
+                                                    <button type="button" class="btn btn-warning">حذف فیلتر ها</button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                             <table id="Data" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
