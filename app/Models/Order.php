@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -74,8 +75,9 @@ class Order extends Model
     }
 
 
-    public function Check(): BelongsTo
+    public function checks(): HasMany
     {
-        return $this->belongsTo(Check::class);
+        return $this->hasMany(Check::class);
     }
+
 }
