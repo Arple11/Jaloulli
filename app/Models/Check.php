@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * App\Models\Check
@@ -33,9 +34,13 @@ class Check extends Model
 
     protected $fillable = [
         'order_id',
-        'customer_id',
         'total_pay',
-        'seller_id',
+
     ];
+    protected function User(): HasMany
+    {
+        return $this->hasMany(User::class);
+    }
 }
+
 

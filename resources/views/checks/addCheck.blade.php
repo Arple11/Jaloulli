@@ -38,33 +38,20 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="order_id">شماره سفارش</label>
-                            <input type="integer" class="form-control" id="order_id" name="order_id"
-                                   placeholder="شماره سفارش را وارد کنید">
-                        </div>
-                        <div class="form-group">
-                            <label for="customer_id">id مشتری</label>
-                            <input type="integer" class="form-control" id="customer_id" name="customer_id"
-                                   placeholder="id مشتری">
+                            <select name="user_id" class="form-control">
+                                <option value=""></option>
+                            </select>
 
-                            <div class="form-group">
-                                <label for="seller_id">id فروشنده </label>
-                                <input type="integer" class="form-control" id="seller_id" name="seller_id"
-                                       placeholder="id فروشنده">
 
-                        </div>
+
                         <div class="form-group">
                             <label for="total_pay">مبلغ فاکتور</label>
                             <input type="bigInteger" class="form-control" id="total_pay" name="total_pay"
-                                   placeholder="مبلغ فاکتور را وارد کنید">
+                                placeholder="مبلغ فاکتور را وارد کنید">
 
-                                    <input type="file" class="custom-file-input" id="checkImage" name="checkImage"
-                                           accept="image/*,.pdf,.doc">
-                                    <label class="custom-file-label" for="exampleInputFile">انتخاب اسکن
-                                        فاکتور</label>
-
-                            </div>
                         </div>
                     </div>
+            </div>
                     <!-- /.card-body -->
 
                     <div class="card-footer">

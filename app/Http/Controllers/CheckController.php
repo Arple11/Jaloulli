@@ -42,21 +42,13 @@ class CheckController extends Controller
     {
         Check::destroy($id);
         return redirect()->route('Checks_data');
-//        DB::table('checks')->where('id', $id)->delete();
-//
-//        return redirect()->route('Checks_data');
+
     }
 
     public function editCheck($id)
     {
         return view('checks.editCheckMenue', ['check' => Check::find($id)]);
-
-//        $check = DB::table('checks')->where('id', $id)
-//            ->select('order_id', 'seller_id', 'customer_id', 'total_pay', 'id as checkid')
-//            ->first();
-
-//       dd($check);
-//        return view('checks.editCheckMenue', ['check' => $check]);
+        
     }
 
     public function store_edited_check(Request $request, $id)

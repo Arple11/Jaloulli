@@ -46,7 +46,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  */
 class Order extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'orders';
 
@@ -62,12 +62,20 @@ class Order extends Model
     {
         return $this->belongsToMany(Product::class)->withPivot('count');
     }
+
     public function seller(): BelongsTo
     {
-        return $this->belongsTo(User::class,'seller_id');
+        return $this->belongsTo(User::class, 'seller_id');
     }
+
     public function customer(): BelongsTo
     {
-        return $this->belongsTo(User::class,'customer_id');
+        return $this->belongsTo(User::class, 'customer_id');
+    }
+
+
+    public function Check(): BelongsTo
+    {
+        return $this->belongsTo(Check::class);
     }
 }

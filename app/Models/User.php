@@ -140,7 +140,7 @@ class User extends Authenticatable
         $data = $request->all();
 
         /*
-         * removing the token
+         * removing the token.
          */
         array_shift($data);
 

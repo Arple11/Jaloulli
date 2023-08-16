@@ -6,8 +6,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
                     <a href="#" class="nav-link user-panel mt-3 pb-3 mb-3 info">
-                        <img src="https://www.gravatar.com/avatar/52f0fbcbedee04a121cba8dad1174462?s=200&d=mm&r=g" class="img-circle elevation-2" alt="User Image">
-                        حسام موسوی
+                         3A پروفایل
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">

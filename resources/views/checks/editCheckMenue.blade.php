@@ -43,18 +43,6 @@
                             <label for="order_number">شماره سفارش</label>
                             <input type="number" class="form-control" id="order_number" name="order_id"
                                    placeholder="{{$check->order_id}}" value="{{$check->order_id}}">
-                        </div>
-                        <div class="form-group">
-                            <label for="customer_id">id مشتری</label>
-                            <input type="number" class="form-control" id="customer_id" name="customer_id"
-                                   placeholder="{{$check->customer_id}}" value="{{$check->customer_id}}">
-
-                            <div class="form-group">
-                                <label for="seller_id">id فروشنده </label>
-                                <input type="number" class="form-control" id="seller_id" name="seller_id"
-                                       placeholder="{{$check->seller_id}}" value="{{$check->seller_id}}">
-
-                            </div>
                             <div class="form-group">
                                 <label for="total_pay">مبلغ فاکتور</label>
                                 <input type="number" class="form-control" id="total_pay" name="total_pay"
@@ -63,7 +51,6 @@
                         </div>
                     </div>
                     <!-- /.card-body -->
-
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">ارسال</button>
                     </div>

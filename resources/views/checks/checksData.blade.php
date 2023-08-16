@@ -43,8 +43,6 @@
                                 <thead>
                                 <tr>
                                     <th>شماره سفارش</th>
-                                    <th>id مشتری</th>
-                                    <th>id فروشنده</th>
                                     <th>مبلغ فاکتور</th>
                                     <th>ویرایش</th>
                                     <th>حذف</th>
@@ -54,8 +52,6 @@
                                 @foreach ($checks as $check)
                                     <tr>
                                         <td>{{ $check->order_id }}</td>
-                                        <td>{{ $check->customer_id}}</td>
-                                        <td>{{ $check->seller_id }}</td>
                                         <td>{{ $check->total_pay }}</td>
                                         <td>
                                             <form class="" action="{{route('edit_check',['id'=>$check->id])}}">
@@ -83,8 +79,6 @@
                                 <tfoot>
                                 <tr>
                                     <th>شماره سفارش</th>
-                                    <th>id مشتری</th>
-                                    <th>id فروشنده</th>
                                     <th>مبلغ فاکتور</th>
                                     <th>ویرایش</th>
                                     <th>حذف</th>
