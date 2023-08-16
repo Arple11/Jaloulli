@@ -103,14 +103,16 @@
                                                                     </button>
                                                                     <input min="0" name="Product_{{$product->id}}"
                                                                            placeholder="0"
+                                                                           @php($temp = 0)
                                                                            @foreach($order->products as $orderProduct)
                                                                                @if($orderProduct->id == $product->id)
                                                                                    value="{{$orderProduct->pivot->count}}"
+                                                                           @php($temp += $orderProduct->pivot->count)
                                                                            @break
                                                                            @endif
                                                                            @endforeach
                                                                            type="number"
-                                                                           max="{{$product->amount_available}}"
+                                                                           max="{{$product->amount_available+$temp}}"
                                                                            class="form-control form-control-sm"
                                                                            style="width: 70px;"/>
                                                                     <button class="btn btn-link px-2" type="button"
