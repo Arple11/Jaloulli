@@ -69,7 +69,7 @@ Route::prefix('Opportunity')->group(function ()
 
 Route::prefix('Check')->group(function ()
 {
-    Route::view('/add_Check','checks.addCheck')->name('addCheck');
+    Route::get('/add_Check',[CheckController::class,'addCheck'])->name('addCheck');
     Route::post('/submit_Check', [CheckController::class, 'create'])->name('submitCheck');
     Route::get('/Checks',[CheckController::class,'get_all_checks'])->name('Checks_data');
     Route::post('/delete_check/{id}',[CheckController::class,'delete_check'])->name('delete_check');

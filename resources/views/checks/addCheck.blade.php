@@ -39,7 +39,12 @@
                         <div class="form-group">
                             <label for="order_id">شماره سفارش</label>
                             <select name="user_id" class="form-control">
-                                <option value=""></option>
+                                @foreach($orders as $order)
+                                    <option value="{{$order->id}}">
+                                        value="{{$order->id}}
+                                    </option>
+                                @endforeach
+
                             </select>
 
 

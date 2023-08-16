@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Check;
@@ -68,6 +69,9 @@ class CheckController extends Controller
 
         return redirect()->route('Checks_data');
 //        return view('checks.editCheckMenue', ['check' => $check]);
+    }
+    public function addCheck(){
+        return view('checks.addCheck',['orders'=>Order::all()]);
     }
 
 
