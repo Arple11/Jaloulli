@@ -161,6 +161,7 @@
                                                                             @if(isset($_GET['filterGender']))
                                                                                 @if($_GET['filterGender'] == 'all')
                                                                                     selected @endif
+                                                                            @else selected
                                                                             @endif>همه
                                                                     </option>
                                                                 </select>
