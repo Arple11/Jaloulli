@@ -21,10 +21,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Check newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Check query()
  * @method static \Illuminate\Database\Eloquent\Builder|Check whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Check whereCustomerId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Check whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Check whereOrderId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Check whereSellerId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Check whereTotalPay($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Check whereUpdatedAt($value)
  * @mixin \Eloquent

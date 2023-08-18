@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -15,19 +16,19 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 /**
  * App\Models\Order
  *
- * @property int $id
- * @property int $customer_id
- * @property int $seller_id
- * @property string|null $explanations
- * @property int $order_total_price
- * @property int $balance
- * @property Carbon|null $deleted_at
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
- * @property-read \App\Models\User|null $customer
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product> $products
- * @property-read int|null $products_count
- * @property-read \App\Models\User|null $seller
+ * @property int                           $id
+ * @property int                           $customer_id
+ * @property int                           $seller_id
+ * @property string|null                   $explanations
+ * @property int                           $order_total_price
+ * @property int                           $balance
+ * @property Carbon|null                   $deleted_at
+ * @property Carbon|null                   $created_at
+ * @property Carbon|null                   $updated_at
+ * @property-read User|null                $customer
+ * @property-read Collection<int, Product> $products
+ * @property-read int|null                 $products_count
+ * @property-read User|null                $seller
  * @method static \Illuminate\Database\Eloquent\Builder|Order newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Order newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Order onlyTrashed()
@@ -43,6 +44,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Order withoutTrashed()
+ * @method static \Database\Factories\OrderFactory factory($count = null, $state = [])
+ * @property-read Collection<int, Check>   $checks
+ * @property-read int|null                 $checks_count
  * @mixin \Eloquent
  */
 class Order extends Model

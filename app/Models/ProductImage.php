@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Models\productImage
+ * App\Models\ProductImage
  *
- * @property int $id
- * @property int $product_id
- * @property string $image_url
+ * @property int                             $id
+ * @property int                             $product_id
+ * @property string                          $image_url
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|ProductImage newModelQuery()

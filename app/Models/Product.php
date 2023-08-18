@@ -26,27 +26,25 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property int                             $enable
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read Collection<int, Order>     $orders
+ * @property-read int|null                   $orders_count
  * @method static \Database\Factories\ProductFactory factory($count = null, $state = [])
  * @method static Builder|Product newModelQuery()
  * @method static Builder|Product newQuery()
+ * @method static Builder|Product onlyTrashed()
  * @method static Builder|Product query()
  * @method static Builder|Product whereAmountAvailable($value)
  * @method static Builder|Product whereAmountSold($value)
  * @method static Builder|Product whereCreatedAt($value)
- * @method static Builder|Product whereEnable($value)
+ * @method static Builder|Product whereDeletedAt($value)
  * @method static Builder|Product whereExplanation($value)
  * @method static Builder|Product whereId($value)
  * @method static Builder|Product wherePrice($value)
  * @method static Builder|Product whereProductName($value)
  * @method static Builder|Product whereTags($value)
  * @method static Builder|Product whereUpdatedAt($value)
- * @property \Illuminate\Support\Carbon|null $deleted_at
- * @method static Builder|Product onlyTrashed()
- * @method static Builder|Product whereDeletedAt($value)
  * @method static Builder|Product withTrashed()
  * @method static Builder|Product withoutTrashed()
- * @property-read Collection<int, \App\Models\Order> $orders
- * @property-read int|null $orders_count
  * @mixin \Eloquent
  */
 class Product extends Model
@@ -66,8 +64,8 @@ class Product extends Model
     public static function saveWithImage(Request $request): Builder|Product
     {
         $imageUrls = [];// an array of images urls so that we can store it as we want
-        if ($images = $request->file('productImages')) {
-            foreach ($images as $image) {
+        if( $images = $request->file('productImages') ) {
+            foreach( $images as $image ) {
                 $name = $image->getClientOriginalName();
                 $image->move("productImages/{$request->product_name}", $name);
                 $imageUrls[] = "productImages/{$request->product_name}/" . "$name";
@@ -75,7 +73,7 @@ class Product extends Model
         }
         $product = Product::create($request->all());
         #inserting [ product id, image url ] to product_images table
-        foreach ($imageUrls as $imageUrl) {
+        foreach( $imageUrls as $imageUrl ) {
             ProductImage::create([
                 'product_id' => $product->id,
                 'image_url' => $imageUrl,
@@ -89,15 +87,15 @@ class Product extends Model
         $oldTrashs = Product::onlyTrashed()
             ->where('deleted_at', '<=', Carbon::now()->subDays(90))
             ->get();
-        foreach ($oldTrashs as $oldTrash)
+        foreach( $oldTrashs as $oldTrash )
             $oldTrash->forceDelete();
         #storing useful data in $datas
         $datas = Product::with('orders:id')
-            ->select(['id','product_name','explanation','price','amount_available'])
+            ->select(['id', 'product_name', 'explanation', 'price', 'amount_available'])
             ->get();
         #serching in product_images table for images related to each data set
         $imagesArr = [];
-        foreach ($datas as $data) {
+        foreach( $datas as $data ) {
             $images = ProductImage::whereProductId($data->id)
                 ->select('image_url')
                 ->get();

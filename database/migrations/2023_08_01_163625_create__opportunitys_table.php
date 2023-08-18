@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->bigInteger('quantity')->nullable(FAlSE);
             $table->longText('opportunity_explanation')->nullable();
             $table->enum('opportunity_status', ['follow_up', 'ongoing', 'finished']);
-            $table->enum('is_urgent' , ['on' , 'off'])->default('off');
+            $table->enum('is_urgent', ['on', 'off'])->default('off');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('_opportunitys');
+        Schema::dropIfExists('opportunities');
     }
 };

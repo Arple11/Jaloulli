@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 class UserController extends Controller
 {
+    // TODO validation user inputs.
     public function store(Request $request): RedirectResponse
     {
         User::create($request->all());
@@ -134,7 +135,6 @@ class UserController extends Controller
 
         $user = $user->get();
         return view('users.usersData')->with(['users' => $user]);
-        ddd($user->toArray());
 
     }
 }

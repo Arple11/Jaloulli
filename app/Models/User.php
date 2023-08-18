@@ -45,6 +45,11 @@ use Illuminate\Notifications\DatabaseNotificationCollection;
  * @property Carbon|null                                                    $updated_at
  * @property-read DatabaseNotificationCollection<int, DatabaseNotification> $notifications
  * @property-read int|null                                                  $notifications_count
+ * @property-read Collection<int, \App\Models\Order>                        $ordersBought
+ * @property-read int|null                                                  $orders_bought_count
+ * @property-read Collection<int, \App\Models\Order>                        $ordersSold
+ * @property-read int|null                                                  $orders_sold_count
+ * @property-read \App\Models\Role|null                                     $role
  * @property-read Collection<int, PersonalAccessToken>                      $tokens
  * @property-read int|null                                                  $tokens_count
  * @method static UserFactory factory($count = null, $state = [])
@@ -74,11 +79,6 @@ use Illuminate\Notifications\DatabaseNotificationCollection;
  * @method static Builder|User whereUserName($value)
  * @method static Builder|User withTrashed()
  * @method static Builder|User withoutTrashed()
- * @property-read \App\Models\Role|null $role
- * @property-read Collection<int, \App\Models\Order> $ordersBought
- * @property-read int|null $orders_bought_count
- * @property-read Collection<int, \App\Models\Order> $ordersSold
- * @property-read int|null $orders_sold_count
  * @mixin \Eloquent
  */
 class User extends Authenticatable
@@ -149,12 +149,14 @@ class User extends Authenticatable
 
     public function ordersBought(): HasMany
     {
-        return $this->hasMany(Order::class,'customer_id');
+        return $this->hasMany(Order::class, 'customer_id');
     }
+
     public function ordersSold(): HasMany
     {
-        return $this->hasMany(Order::class,'seller_id');
+        return $this->hasMany(Order::class, 'seller_id');
     }
+
     public function role(): BelongsTo
     {
         return $this->belongsTo(Role::class);
