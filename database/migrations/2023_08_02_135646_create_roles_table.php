@@ -16,9 +16,6 @@ return new class extends Migration {
             $table->string('role_name', 10);
             $table->timestamps();
         });
-        Role::create(['role_name' => 'customer']);
-        Role::create(['role_name' => 'seller']);
-        Role::create(['role_name' => 'admin']);
     }
 
     /**

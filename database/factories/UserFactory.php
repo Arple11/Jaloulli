@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Role;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -23,7 +24,7 @@ class UserFactory extends Factory
             'last_name' => fake()->lastName(),
             'user_name' => fake()->unique()->userName(),
             'phone_number' => fake()->numberBetween(9000000000,9999999999),
-            'role_id' => fake()->numberBetween(1, 3),
+            'role_id' => Role::factory(),
             'age' => fake()->numberBetween(18, 50),
             'gender' => fake()->randomElement(['male', 'female', 'other']),
             'education' => fake()->randomElement(['high_school', 'bachelor', 'master', 'doctorate']),
