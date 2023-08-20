@@ -23,7 +23,7 @@ class UserFactory extends Factory
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
             'user_name' => fake()->unique()->userName(),
-            'phone_number' => fake()->numberBetween(9000000000,9999999999),
+            'phone_number' => '0'.fake()->numberBetween(9000000000,9999999999),
             'role_id' => Role::factory(),
             'age' => fake()->numberBetween(18, 50),
             'gender' => fake()->randomElement(['male', 'female', 'other']),
