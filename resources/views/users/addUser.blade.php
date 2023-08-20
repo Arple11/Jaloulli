@@ -35,7 +35,7 @@
                 <form role="form" method="post" action="{{route('store_user')}}">
                     @csrf
                     {{-- TODO adding a requerd * to requered fileds --}}
-                    @if ($errors->any())
+                    {{--@if ($errors->any())
                         <div class="alert alert-danger" dir="ltr">
                             <ul dir="ltr">
                                 @foreach ($errors->all() as $error)
@@ -43,61 +43,61 @@
                                 @endforeach
                             </ul>
                         </div>
-                    @endif
+                    @endif--}}
                     <div class="card-body">
                         <div class="form-group">
                             <div class="row">
                                 <div class="col">
+                                    <label for="email">ایمیل</label>
+                                    <input type="email" class="form-control" id="email" name="email"
+                                    placeholder="ایمیل را وارد کنید">
                                     @error('email')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
-                                    <label for="email">ایمیل</label>
-                                    <input type="email" class="form-control" id="email" name="email"
-                                           placeholder="ایمیل را وارد کنید">
                                 </div>
                                 <div class="col">
+                                    <label for="first_name">نام</label>
+                                    <input type="text" class="form-control" id="first_name" name="first_name"
+                                    placeholder="نام">
                                     @error('first_name')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
-                                    <label for="first_name">نام</label>
-                                    <input type="text" class="form-control" id="first_name" name="first_name"
-                                           placeholder="نام">
                                 </div>
                                 <div class="col">
+                                    <label for="last_name">نام خانوادگی</label>
+                                    <input type="text" class="form-control" id="last_name" name="last_name"
+                                    placeholder="نام خانوادگی">
                                     @error('last_name')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
-                                    <label for="last_name">نام خانوادگی</label>
-                                    <input type="text" class="form-control" id="last_name" name="last_name"
-                                           placeholder="نام خانوادگی">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="row">
                                 <div class="col">
+                                    <label for="user_name">نام کاربری</label>
+                                    <input type="text" class="form-control" id="user_name" name="user_name"
+                                    placeholder="نام کاربری">
                                     @error('user_name')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
-                                    <label for="user_name">نام کاربری</label>
-                                    <input type="text" class="form-control" id="user_name" name="user_name"
-                                           placeholder="نام کاربری">
                                 </div>
                                 <div class="col">
+                                    <label for="phone_number">شماره همراه</label>
+                                    <input type="text" class="form-control" id="phone_number" name="phone_number"
+                                    placeholder="09123456789">
                                     @error('phone_number')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
-                                    <label for="phone_number">شماره همراه</label>
-                                    <input type="number" class="form-control" id="phone_number" name="phone_number"
-                                           placeholder="9120000000">
                                 </div>
                                 <div class="col">
+                                    <label for="age">سن</label>
+                                    <input type="number" class="form-control" id="age" name="age"
+                                    min="0" placeholder="سن را وارد کنید">
                                     @error('age')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
-                                    <label for="age">سن</label>
-                                    <input type="number" class="form-control" id="age" name="age"
-                                           min="0" placeholder="سن را وارد کنید">
                                 </div>
                             </div>
                         </div>
@@ -122,12 +122,12 @@
                                     </select>
                                 </div>
                                 <div class="col">
+                                    <label for="postal_code">کد پستی</label>
+                                    <input type="number" class="form-control" id="postal_code" name="postal_code"
+                                    placeholder="کد پستی را وارد کنید">
                                     @error('postal_code')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
-                                    <label for="postal_code">کد پستی</label>
-                                    <input type="number" class="form-control" id="postal_code" name="postal_code"
-                                           placeholder="کد پستی را وارد کنید">
                                 </div>
                                 <div class="col">
                                     <label for="occupation">شغل</label>
@@ -164,9 +164,6 @@
                         </div>
 
                         <div class="form-group">
-                            @error('password')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
                             <div class="row">
                                 <div class="col">
                                     <label for="password">پسورد</label>
@@ -184,6 +181,10 @@
                                            placeholder="Verify Password">
                                 </div>
                             </div>
+                            <br>
+                            @error('password')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="role">سطح دسترسی</label>
