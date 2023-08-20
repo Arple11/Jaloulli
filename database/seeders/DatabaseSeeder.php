@@ -33,88 +33,75 @@ class DatabaseSeeder extends Seeder
         $ordersCount = 10;
         $forPreviousData = false;
 
-        /**
-         * making fake products
-         */
-        $products = Product::factory($productCount)->create();
-
-        /**
-         * using the Previous products if user wants
-         */
-        if ( $forPreviousData ) {
-            $products = Product::all();
-        }
 
         /**
          * checking if customer role exist if not making one
          */
         $customer = Role::where('role_name', 'customer')->first();
-        if ( !$customer ) {
+        if( !$customer ) {
             $customer = Role::factory()->create(['role_name' => 'customer']);
         }
-        $customers = User::factory()
-            ->count($customersCount)
-            ->for($customer, 'role')
-            ->create();
-        /**
-         * using the Previous customers if user wants
-         */
-        if ( $forPreviousData ) {
-            $customers = User::where('role_id',
-                Role::where('role_name', 'customer')->id)
-                ->get();
-        }
-
         /**
          * checking if seller role exist if not making one
          */
         $seller = Role::where('role_name', 'seller')->first();
-        if ( !$seller ) {
+        if( !$seller ) {
             $seller = Role::factory()->create(['role_name' => 'seller']);
         }
-        $sellers = User::factory()
-            ->count($sellersCount)
-            ->for($seller, 'role')
-            ->create();
-        if ( $forPreviousData ) {
-            $sellers = User::where('role_id',
-                Role::where('role_name', 'seller')->id)
-                ->get();
-        }
-
         /**
          * checking if admin role exist if not making one
          */
         $admin = Role::where('role_name', 'admin')->first();
-        if ( !$admin ) {
+        if( !$admin ) {
             $admin = Role::factory()->create(['role_name' => 'admin']);
         }
+        /**
+         * making fake data
+         */
+        $products = Product::factory($productCount)->create();
+        $customers = User::factory()
+            ->count($customersCount)
+            ->for($customer, 'role')
+            ->create();
+        $sellers = User::factory()
+            ->count($sellersCount)
+            ->for($seller, 'role')
+            ->create();
         $admins = User::factory()
             ->for($admin, 'role')
             ->create();
-
         /**
-         * using the Previous customers if user wants
+         * using Previous Database Data if user specified
          */
-        if ( $forPreviousData ) {
+        if( $forPreviousData ) {
+            $products = Product::all();
+            $customers = User::where('role_id',
+                Role::where('role_name', 'customer')->id)
+                ->get();
+            $sellers = User::where('role_id',
+                Role::where('role_name', 'seller')->id)
+                ->get();
             $admins = User::where('role_id',
                 Role::where('role_name', 'admin')->id)
                 ->get();
         }
 
-        for ( $i = 0; $i < $ordersCount; $i++ ) {
+        /**
+         * making the fake Orders
+         */
+        for( $i = 0; $i < $ordersCount; $i++ ) {
 
             $totalPrice = 0;
             $orders = Order::factory()
                 ->for($sellers[ rand(0, (count($sellers) - 1)) ], 'seller')
                 ->for($customers[ rand(0, (count($customers) - 1)) ], 'customer');
 
-            for ( $k = 0; $k < count($products); $k++ ) {
+            for( $k = 0; $k < count($products); $k++ ) {
 
                 $product = $products[ $k ];
                 $count = rand(0, $product->amount_available);
 
-                if ( $count > 0 ) {
+                if( $count > 0 ) {
 
                     $orders = $orders->hasAttached($product, ['count' => $count]);
                     $totalPrice += $product->price * $count;
