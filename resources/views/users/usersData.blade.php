@@ -416,19 +416,8 @@
                                     </tr>
                                 @endforeach
                                 </tbody>
-                                <tfoot>
-                                <tr>
-                                    <th>نقش</th>
-                                    <th>نام کاربری</th>
-                                    <th>ایمیل</th>
-                                    <th>نام</th>
-                                    <th>نام خانوادگی</th>
-                                    <th>شماره همراه</th>
-                                    <th>ویرایش</th>
-                                    <th>حذف</th>
-                                </tr>
-                                </tfoot>
                             </table>
+                            {{ $users->onEachSide(3)->links() }}
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -466,29 +455,6 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('dist/js/demo.js')}}"></script>
 <!-- page script -->
-
-<script>
-    $(function () {
-        $('#Data').DataTable({
-            "language":
-                {
-                    "paginate":
-                        {
-                            "next": "بعدی",
-                            "previous": "قبلی"
-                        },
-                    "search": "جست و جو : ",
-                },
-
-            "info": true,
-            "paging": true,
-            "lengthChange": true,
-            "searching": true,
-            "ordering": true,
-            "autoWidth": true
-        });
-    });
-</script>
 
 </body>
 </html>

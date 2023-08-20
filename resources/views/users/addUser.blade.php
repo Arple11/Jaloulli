@@ -70,7 +70,7 @@
                                 <div class="col">
                                     <label for="age">سن</label>
                                     <input type="number" class="form-control" id="age" name="age"
-                                           placeholder="سن را وارد کنید">
+                                           min="0" placeholder="سن را وارد کنید">
                                 </div>
                             </div>
                         </div>
@@ -172,9 +172,7 @@
 
     <!-- /.row (main row) -->
 </div><!-- /.container-fluid -->
-</section>
-<!-- /.content -->
-</div>
+
 <!-- /.content-wrapper -->
 
 @include('.footer.main_footer')
@@ -184,7 +182,7 @@
     <!-- Control sidebar content goes here -->
 </aside>
 <!-- /.control-sidebar -->
-</div>
+
 <!-- ./wrapper -->
 @include('.scripts')
 </body>
