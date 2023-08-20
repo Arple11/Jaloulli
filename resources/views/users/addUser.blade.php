@@ -35,20 +35,38 @@
                 <form role="form" method="post" action="{{route('store_user')}}">
                     @csrf
                     {{-- TODO adding a requerd * to requered fileds --}}
+                    @if ($errors->any())
+                        <div class="alert alert-danger" dir="ltr">
+                            <ul dir="ltr">
+                                @foreach ($errors->all() as $error)
+                                    <li dir="ltr">{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="card-body">
                         <div class="form-group">
                             <div class="row">
                                 <div class="col">
+                                    @error('email')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                     <label for="email">ایمیل</label>
                                     <input type="email" class="form-control" id="email" name="email"
                                            placeholder="ایمیل را وارد کنید">
                                 </div>
                                 <div class="col">
+                                    @error('first_name')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                     <label for="first_name">نام</label>
                                     <input type="text" class="form-control" id="first_name" name="first_name"
                                            placeholder="نام">
                                 </div>
                                 <div class="col">
+                                    @error('last_name')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                     <label for="last_name">نام خانوادگی</label>
                                     <input type="text" class="form-control" id="last_name" name="last_name"
                                            placeholder="نام خانوادگی">
@@ -58,16 +76,25 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col">
+                                    @error('user_name')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                     <label for="user_name">نام کاربری</label>
                                     <input type="text" class="form-control" id="user_name" name="user_name"
                                            placeholder="نام کاربری">
                                 </div>
                                 <div class="col">
+                                    @error('phone_number')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                     <label for="phone_number">شماره همراه</label>
                                     <input type="number" class="form-control" id="phone_number" name="phone_number"
                                            placeholder="9120000000">
                                 </div>
                                 <div class="col">
+                                    @error('age')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                     <label for="age">سن</label>
                                     <input type="number" class="form-control" id="age" name="age"
                                            min="0" placeholder="سن را وارد کنید">
@@ -95,6 +122,9 @@
                                     </select>
                                 </div>
                                 <div class="col">
+                                    @error('postal_code')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                     <label for="postal_code">کد پستی</label>
                                     <input type="number" class="form-control" id="postal_code" name="postal_code"
                                            placeholder="کد پستی را وارد کنید">
@@ -134,18 +164,24 @@
                         </div>
 
                         <div class="form-group">
+                            @error('password')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                             <div class="row">
                                 <div class="col">
                                     <label for="password">پسورد</label>
-                                    <input type="password" class="form-control" id="password" name="password"
-                                           placeholder="پسورد را وارد کنید">
+                                    <input class="form-control @error('password') is-invalid @enderror" id="password"
+                                           name="password" type="password"
+                                           pattern="^\S{6,}$"
+                                           placeholder="Password">
+
                                 </div>
-                                {{-- TODO pasword confirm check --}}
                                 <div class="col">
-                                    <label for="password_confirm">تکرار پسورد</label>
-                                    <input type="password" class="form-control" id="password_confirm"
-                                           name="password_confirm"
-                                           placeholder="پسورد را دوباره وارد کنید">
+                                    <label for="password_confirmation">تکرار پسورد</label>
+                                    <input class="form-control" id="password_confirmation" name="password_confirmation"
+                                           type="password"
+                                           pattern="^\S{6,}$"
+                                           placeholder="Verify Password">
                                 </div>
                             </div>
                         </div>

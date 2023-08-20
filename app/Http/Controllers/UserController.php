@@ -3,15 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Rules\UsedEmail;
+use App\Rules\UsedUserName;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
-    // TODO validation user inputs.
     public function store(Request $request): RedirectResponse
     {
+        $validated = $request->validate([
+            'email' => ['required', 'email', new UsedEmail()],
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'user_name' => ['required', new UsedUserName()],
+            'phone_number' => ['required', 'numeric',
+                'regex:/(\+98|0|98|0098)?([ ]|-|[()]){0,2}9[0-9]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}/ig'],
+            'age' => ['required', 'min:18'],
+            'postal_code' => ['required', 'regex:/\b(?!(\d)\1{3})[13-9]{4}[1346-9][013-9]{5}\b/'],
+            'password' => ['confirmed', 'required', Password::min(8)->numbers()->letters()]
+        ]);
         User::create($request->all());
         return redirect()->route('Users_data');
     }
