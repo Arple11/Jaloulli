@@ -43,6 +43,7 @@
                                     <thead>
                                     <tr>
                                         <th>ID</th>
+                                        <th>اسم سفارش</th>
                                         <th>مشتری</th>
                                         <th>فروشنده</th>
                                         <th>توضیحات</th>
@@ -58,6 +59,7 @@
                                     @foreach ($orders as $order)
                                         <tr>
                                             <td>{{$order->id}}</td>
+                                            <td>{{$order->order_name}}</td>
                                             <td>
                                                 <a class="btn" data-bs-toggle="collapse"
                                                    href="#collapseC{{$order->customer->id}}{{$temp}}">

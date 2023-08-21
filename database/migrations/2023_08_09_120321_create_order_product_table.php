@@ -12,7 +12,6 @@ return new class extends Migration {
     {
         Schema::create('order_product', function (Blueprint $table) {
             $table->id();
-            $table->string('order_name',50);
             $table->bigInteger('order_id')->unsigned();
             $table->foreign('order_id')
                 ->references('id')->on('orders')->onDelete('cascade');
