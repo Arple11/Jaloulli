@@ -19,6 +19,7 @@ class OrderFactory extends Factory
     public function definition(): array
     {
         return [
+            'order_name' => fake()->company,
             'customer_id' => User::factory(),
             'seller_id' => User::factory(),
             'explanations' => fake()->realTextBetween(30, 50),

@@ -38,6 +38,11 @@
                 <form role="form" method="post" action="{{route('store_order')}}">
                     @csrf
                     <div class="form-group">
+                        <div class="col">
+                            <label for="order_name">اسم سفارش</label>
+                            <input type="text" class="form-control" id="order_name" name="order_name"
+                                   placeholder="اسم سفارش">
+                        </div>
                         <label for="customer_id">customers</label>
                         <select class="form-control" id="customer_id" name="customer_id">
                             @foreach($customers as $customer)

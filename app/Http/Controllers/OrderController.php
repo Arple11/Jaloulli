@@ -21,9 +21,10 @@ class OrderController extends Controller
     public function addOrder(Request $request): RedirectResponse
     {
         $req = (object)array_slice($request->all(), 1); //removing token
-        $products = array_slice($request->all(), 3);
+        $products = array_slice($request->all(), 4);
         array_pop($products);
         $order = Order::create([
+            'order_name' => $req->order_name,
             'customer_id' => $req->customer_id,
             'seller_id' => $req->seller_id,
             'explanations' => $req->explanations,
