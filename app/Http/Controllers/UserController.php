@@ -10,10 +10,32 @@ use App\Rules\UsedUserName;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
+    public function login(Request $request)
+    {
+        $rememberMe = false;
+        if( isset($request['rememberMe']) ) {
+            $rememberMe = true;
+        }
+        $loginData = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        if (Auth::attempt($loginData,$rememberMe)) {
+            $request->session()->regenerate();
+            return redirect()->intended('workplace');
+        }
+        return back()->withErrors([
+            'email' => 'رمز یا ایمیل وارد شده درست نمی باشد.',
+        ])->onlyInput('email');
+
+    }
+
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([

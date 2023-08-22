@@ -18,16 +18,21 @@
         <div class="card-body login-card-body">
             <p class="login-box-msg">فرم زیر را تکمیل کنید و ورود بزنید</p>
 
-            <form action="{{route('workplace')}}" method="post">
+            <form action="{{route('authorize')}}" method="post">
                 @csrf
+                @if ($errors->has('email'))
+                    <div class="alert alert-danger">{{ $errors->first('email') }}</div>
+                @endif
                 <div class="input-group mb-3">
-                    <input type="email" class="form-control" placeholder="ایمیل">
+                    <input type="email" class="form-control" placeholder="ایمیل"
+                           name="email" value="{{ old('email') }}">
                     <div class="input-group-append">
                         <span class="fa fa-envelope input-group-text"></span>
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="رمز عبور">
+                    <input type="password" class="form-control" required placeholder="رمز عبور"
+                           name="password">
                     <div class="input-group-append">
                         <span class="input-group-text">
                             <i class="fa-solid fa-fingerprint"></i>
@@ -38,15 +43,13 @@
                     <div class="col-8">
                         <div class="checkbox icheck">
                             <label>
-                                <input type="checkbox"> یاد آوری من
+                                <input name="rememberMe" type="checkbox"> یاد آوری من
                             </label>
                         </div>
                     </div>
-                    <!-- /.col -->
                     <div class="col-4">
                         <button type="submit" class="btn btn-primary btn-block btn-flat">ورود</button>
                     </div>
-                    <!-- /.col -->
                 </div>
             </form>
 

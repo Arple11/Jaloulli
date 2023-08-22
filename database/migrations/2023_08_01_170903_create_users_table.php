@@ -28,6 +28,7 @@ return new class extends Migration {
             $table->bigInteger('postal_code');
             $table->string('address');
             $table->string('password');
+            $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();
         });
