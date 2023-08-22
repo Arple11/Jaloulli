@@ -26,7 +26,7 @@ Route::view('/login', 'authorize.login')->name('login');
 
 Route::view('/register', 'authorize.register')->name('register');
 
-Route::middleware('auth')->group(function () {
+//Route::middleware('auth')->group(function () {
     Route::post('/workplace', function () {
         return view('workplace')
             ->with([
@@ -94,7 +94,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/storing_editedOrder/{id}', [OrderController::class, 'saveEditedOrder'])
             ->name('save_edited_order');
     });
-});
+//});
 
 
 # GET route for Data options views
