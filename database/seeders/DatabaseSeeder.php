@@ -58,6 +58,12 @@ class DatabaseSeeder extends Seeder
         /**
          * making fake data
          */
+        $admin = User::factory()
+            ->for($admin, 'role')
+            ->create([
+                'email' => 'admin@admin.com',
+                'password' => 'admin@123',
+            ]);
         $products = Product::factory($productCount)->create();
         $customers = User::factory()
             ->count($customersCount)
@@ -66,9 +72,6 @@ class DatabaseSeeder extends Seeder
         $sellers = User::factory()
             ->count($sellersCount)
             ->for($seller, 'role')
-            ->create();
-        $admins = User::factory()
-            ->for($admin, 'role')
             ->create();
         /**
          * using Previous Database Data if user specified
@@ -80,9 +83,6 @@ class DatabaseSeeder extends Seeder
                 ->get();
             $sellers = User::where('role_id',
                 Role::where('role_name', 'seller')->id)
-                ->get();
-            $admins = User::where('role_id',
-                Role::where('role_name', 'admin')->id)
                 ->get();
         }
 
