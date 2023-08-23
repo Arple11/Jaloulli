@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\DB;
 use App\Models\Check;
 
@@ -49,7 +50,7 @@ class CheckController extends Controller
     public function editCheck($id)
     {
         return view('checks.editCheckMenue', ['check' => Check::find($id)]);
-        
+
     }
 
     public function store_edited_check(Request $request, $id)
@@ -70,16 +71,31 @@ class CheckController extends Controller
         return redirect()->route('Checks_data');
 //        return view('checks.editCheckMenue', ['check' => $check]);
     }
-    public function addCheck(){
-        return view('checks.addCheck',['orders'=>Order::all()]);
+
+    public function addCheck()
+    {
+        return view('checks.addCheck', ['orders' => Order::all()]);
     }
 
 
+    public function filterCheck(Request $request)
+    {
+        $check = new Check();
+        if (!is_null($request->filterOrderId)) {
+            $check = $check->where('name', 'like', '%' . $request->filterOrderId . '%');
+        }
+        if (!is_null($request->filterFirstName)) {
+            $check = $check->where('name', 'like', '%' . $request->filterFirstName . '%');
+        }
+        if (!is_null($request->filterFirstName)) {
+            $check = $check->where('name', 'like', '%' . $request->filterFirstName . '%');
+        }
+        if (!is_null($request->filterFirstName)) {
+            $check = $check->where('name', 'like', '%' . $request->filterFirstName . '%');
+        }
+        if (!is_null($request->filterFirstName)) {
+
+        }
+
+    }
 }
-
-
-
-
-
-
-//asliasliasliasliasliasliasliasliasliasliasliasliasliasliasliasliasliasliasliasliasliasliasliasliasliasliasliasliasliasliasliasli

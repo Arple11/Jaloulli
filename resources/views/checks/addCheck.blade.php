@@ -37,11 +37,11 @@
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="order_id">شماره سفارش</label>
-                            <select name="user_id" class="form-control">
+                            <label for="order_id">اسم سفارش</label>
+                            <select name="order_id" class="form-control">
                                 @foreach($orders as $order)
                                     <option value="{{$order->id}}">
-                                        value="{{$order->id}}
+                                        {{$order->order_name}}
                                     </option>
                                 @endforeach
 
