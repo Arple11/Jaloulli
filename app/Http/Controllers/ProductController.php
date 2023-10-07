@@ -11,35 +11,41 @@ use Illuminate\Contracts\View\Factory;
 
 class ProductController extends Controller
 {
-
-    public function store(Request $request): RedirectResponse
+    public function index()
     {
-        Product::saveWithImage($request);
-        return redirect()->route('Products_data');
+        $users = Product::all();
+        return response()->json($users);
     }
 
-    public function all_products(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    public function store(Request $request)
     {
-        #opening productsData view with the passing data
-        return view('products.productsData')->with(Product::getAllProductsWithImage());
+        $request->validate([
+            'product_name' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
+            'product_type' => 'required|string|max:255',
+            'price' => 'required|string|max:255',
+        ]);
+        Product::create($request->all());
+        return response()->json("success.");
     }
 
-    public function delete_product($id): RedirectResponse
+    public function destroy($id)
     {
-        Product::destroy($id);
-        return redirect()->route('Products_data');
+        $user = Product::find($id);
+        $user->delete();
+        return response()->json("Deleted.");
     }
 
-    public function edit_product_menu($id): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    public function show($id): \Illuminate\Http\JsonResponse
     {
-        return view('products.editProductMenue', ['product' => Product::editSelect($id)]);
+        return response()->json("success.");
     }
 
-    public function store_edited_product(Request $request, $id): RedirectResponse
+    public function update(Request $request, $id): \Illuminate\Http\JsonResponse
     {
-        Product::saveEditedProduct($request,$id);
-        return redirect()->route('Products_data');
+        $user = Product::find($id);
+        $user->update($request->all());
+        $user->save();
+        return response()->json("updated");
     }
-
-
 }

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\User;
+use App\Jobs\SmsJob;
 use App\Rules\IranPhoneNumber;
 use App\Rules\IranPostalCode;
 use App\Rules\UsedEmail;
@@ -11,144 +13,53 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\Http\JsonResponse;
 
 class UserController extends Controller
 {
-    public function store(Request $request): RedirectResponse
+    public function index()
     {
-        $validated = $request->validate([
-            'email' => ['required', 'email', new UsedEmail()],
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'user_name' => ['required', new UsedUserName()],
-            'phone_number' => ['required', 'numeric',new IranPhoneNumber()],
-            'age' => ['required', 'min:18'],
-            'postal_code' => ['required', new IranPostalCode()],
-            'password' => ['confirmed', 'required', Password::min(8)->numbers()->letters()]
+        $users = User::all();
+        return response()->json($users);
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'family' => 'required|string|max:255',
+            'middle_name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'phone_number' => 'required',
+            'national_id' => 'required',
+            'password' => 'required|string|min:8',
         ]);
         User::create($request->all());
-        return redirect()->route('Users_data');
+        return response()->json("success.");
     }
 
-    public function get_all_users()
+    public function destroy($id)
     {
-        return (view('users.usersData')->with(['users' => User::getAllUsers()]));
+        $user = User::find($id);
+        $user->delete();
+        return response()->json("Deleted.");
     }
 
-    public function edit_panel_user_data($id)
+    public function show($id): \Illuminate\Http\JsonResponse
     {
-        return view('users.editUserMenue', ['user' => User::find($id)]);
+        $user = User::find($id);
+       return response()->json($user);
     }
 
-    public function store_edited_user(Request $request, $id)
+    public function update(Request $request, $id): \Illuminate\Http\JsonResponse
     {
-        User::storeEditedUser($request, $id);
-        return redirect()->route('Users_data');
+        $user = User::find($id);
+        $user->update($request->all());
+        $user->save();
+        return response()->json("updated");
     }
-
-    public function delete_user($id)
+    public function orders()
     {
-        User::destroy($id);
-        return redirect()->route('Users_data');
-    }
-
-    public function filterUsers(Request $request)
-    {
-//        dd($request->toArray());
-        $user = new User();
-        if( !is_null($request->filterEmail) ) {
-            $user = $user->where('email', 'like', '%' . $request->filterEmail . '%');
-        }
-
-        if( !is_null($request->filterFirstName) ) {
-            $user = $user->where('first_name', 'like', '%' . $request->filterFirstName . '%');
-        }
-
-        if( !is_null($request->filterLastName) ) {
-            $user = $user->where('last_name', 'like', '%' . $request->filterLastName . '%');
-        }
-
-        if( !is_null($request->filterUserName) ) {
-            $user = $user->where('user_name', 'like', '%' . $request->filterUserName . '%');
-        }
-
-        if( !is_null($request->filterPhoneNumber) ) {
-            $user = $user->where('phone_number', 'like', '%' . $request->filterPhoneNumber . '%');
-        }
-
-        if( !is_null($request->filterAgeMin) ) {
-            $user = $user->where('age', '>=', $request->filterAgeMin);
-        }
-
-        if( !is_null($request->filterAgeMax) ) {
-            $user = $user->where('age', '<=', $request->filterAgeMax);
-        }
-
-        if( $request->filterGender != "all" ) {
-            $user = $user->where('gender', $request->filterGender);
-        }
-
-        if( $request->filterEducation != "all" ) {
-
-            $user = $user->where('education', $request->filterEducation);
-        }
-
-        if( !is_null($request->filterPostalCode) ) {
-            $user = $user->where('postal_code', 'like', $request->filterPostalCode);
-        }
-
-        if( !is_null($request->filterOccupation) ) {
-            $user = $user->where('occupation', 'like', $request->filterOccupation);
-        }
-
-        if( $request->filterOrderStatus != "all" ) {
-            if( $request->filterOrderStatus == "true" ) {
-                $user = $user->where(function (Builder $query) {
-                    $query->whereHas('ordersSold')
-                        ->orwherehas('ordersBought');
-                });
-            } else if( $request->filterOrderStatus == "false" ) {
-                $user = $user->where(function (Builder $query) {
-                    $query->whereDoesntHave('ordersSold')
-                        ->WhereDoesntHave('ordersBought');
-                });
-            }
-        }
-
-        if( $request->filterFactorStatus != "all" ) {
-            if( $request->filterFactorStatus == "true" ) {
-//                $user = $user->where(function (Builder $query) {});
-            } else if( $request->filterFactorStatus == "false" ) {
-//                $user = $user->where(function (Builder $query) {});
-            }
-        }
-
-        if( !is_null($request->filterOrderCountMin) ) {
-            $user = $user->whereHas('ordersBought', function (Builder $query) {
-                return $query;
-            }, '>=', $request->filterOrderCountMin)
-                ->orWhereHas('ordersBought', function (Builder $query) {
-                    return $query;
-                }, '>=', $request->filterOrderCountMin);
-        }
-
-        if( !is_null($request->filterOrderCountMax) ) {
-            $user = $user->whereHas('ordersBought', function (Builder $query) {
-                return $query;
-            }, '<=', $request->filterOrderCountMax)
-                ->orWhereHas('ordersBought', function (Builder $query) {
-                    return $query;
-                }, '<=', $request->filterOrderCountMax);
-        }
-
-        if( $request->filterRole != "all" ) {
-            $user = $user->where('role_id', $request->filterRole);
-        }
-
-        // TODO add total Order filter
-
-        $user = $user->paginate(10);
-        return view('users.usersData')->with(['users' => $user]);
-
+        return $this->hasMany(Order::class);
     }
 }

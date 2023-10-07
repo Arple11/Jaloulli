@@ -56,33 +56,12 @@ class Order extends Model
     protected $table = 'orders';
 
     protected $fillable = [
-        'order_name',
-        'customer_id',
-        'seller_id',
-        'explanations',
-        'order_total_price',
-        'balance',
+        'user_id',
+        'product_id'
     ];
 
     public function products(): BelongsToMany
     {
         return $this->belongsToMany(Product::class)->withPivot('count');
     }
-
-    public function seller(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'seller_id');
-    }
-
-    public function customer(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'customer_id');
-    }
-
-
-    public function checks(): HasMany
-    {
-        return $this->hasMany(Check::class);
-    }
-
 }

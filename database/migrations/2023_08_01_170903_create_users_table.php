@@ -12,21 +12,12 @@ return new class extends Migration {
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('email', 50)->unique();
-            $table->string('first_name', 30);
-            $table->string('last_name', 30);
-            $table->string('user_name', 30)->unique();
-            $table->string('phone_number', 20);
-            $table->tinyInteger('role_id')->default(1)->unsigned();
-            $table->smallInteger('age')->unsigned();
-            $table->enum('gender', ['male', 'female', 'other'])->default('male');
-            $table->enum('education', ['high_school', 'bachelor', 'master', 'doctorate'])->default('high_school');
-            $table->string('occupation');
-            $table->text('interests')->nullable();
-            $table->text('hobbies')->nullable();
-            $table->text('bio')->nullable();
-            $table->bigInteger('postal_code');
-            $table->string('address');
+            $table->string('name');
+            $table->string('family');
+            $table->string('middle_name');
+            $table->string('email');
+            $table->string('phone_number');
+            $table->string('national_id');
             $table->string('password');
             $table->softDeletes();
             $table->timestamps();

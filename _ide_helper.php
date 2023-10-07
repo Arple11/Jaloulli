@@ -18720,7 +18720,7 @@
      * 
      *
      */ 
-        class Request {
+        class Request {public mixed $product_id;
                     /**
          * 
          *
