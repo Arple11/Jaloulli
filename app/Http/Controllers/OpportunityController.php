@@ -8,27 +8,35 @@ use Illuminate\Http\RedirectResponse;
 
 class OpportunityController extends Controller
 {
-    public function store(Request $request)
-    {
+    public function store(Request $request){
+        $request ->validate([
+            'product_id'=> 'required|',
+            'description'=> 'string|max:255'
+        ]);
         Opportunity::create($request->all());
-        return redirect()->route('opportunities_data');
+        return response()->json('successs.');
     }
-    public function get_all_opportunities()
-    {
-        return view('opportunitys.opportunitysData',['opportunities'=>Opportunity::GetAllOpportunities()]);
+
+    public function index(){
+        $opportunities = Opportunity::all();
+        return response()->json($opportunities);
     }
-    public function edit_opportunities($id)
-    {
-        return view('opportunitys.EditOpportunity',['opportunity'=>Opportunity::find($id)]);
+
+    public function update(Request $request, $id){
+        $opportunity = Opportunity::find($id);
+        $opportunity -> update($request->all());
+        $opportunity -> save();
+        return response()->json($opportunity);
     }
-    public function store_edit_opportunities(Request $request , $id)
-    {
-        Opportunity::storeEditedOpportunities($request , $id);
-        return redirect()->route('opportunities_data');
+
+    public function show($id){
+        $opportunity =Opportunity::find($id);
+        return response()->json($opportunity);
     }
-    public function delete_opportunities($id)
-    {
-        Opportunity::destroy($id);
-        return redirect()->route('opportunities_data');
+
+    public function destroy($id){
+        $opportunity = Opportunity::find($id);
+        $opportunity -> delete();
+        return response()->json('deleted.');
     }
 }

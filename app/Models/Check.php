@@ -32,8 +32,10 @@ class Check extends Model
     use HasFactory;
 
     protected $fillable = [
-        'order_id',
-        'total_pay',
+        "order_id",
+        "user_id",
+        "total_price",
+
 
     ];
     protected function order():  BelongsTo

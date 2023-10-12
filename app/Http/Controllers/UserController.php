@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\RegisterEmailJob;
 use App\Models\Order;
 use App\Models\User;
-use App\Jobs\SmsJob;
 use App\Rules\IranPhoneNumber;
 use App\Rules\IranPostalCode;
 use App\Rules\UsedEmail;

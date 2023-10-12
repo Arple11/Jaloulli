@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Jobs\RegisterEmailJob;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -59,7 +60,7 @@ class AuthController extends Controller
             'national_id' =>$request->national_id,
             'password' => Hash::make($request->password),
         ]);
-
+        dispatch(new RegisterEmailJob($user));
         return response()->json([
             'message' => 'User created successfully',
             'user' => $user

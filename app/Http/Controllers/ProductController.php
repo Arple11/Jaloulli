@@ -38,7 +38,8 @@ class ProductController extends Controller
 
     public function show($id): \Illuminate\Http\JsonResponse
     {
-        return response()->json("success.");
+        $product = Product::find($id);
+        return response()->json($product);
     }
 
     public function update(Request $request, $id): \Illuminate\Http\JsonResponse
